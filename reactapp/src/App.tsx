@@ -5,6 +5,7 @@ import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import isElectron from 'is-electron';
+import {ElectronMessages} from "./ElectronCommunication/ElectronMessages";
 //import {webContents} from "@electron/remote";
 
 const isOnElectron = isElectron()
@@ -13,19 +14,23 @@ console.log("Is running on Electron? " + isElectron());
 
 const handleDemoClick = () => {
     if(isOnElectron){
-        //const electron = require("electron")
-        //const ipc = electron.ipcRenderer
-        //ipc.send('open-alert-dialog')
-
-        //const electron = window.require('electron');
-        //const remote = electron.remote
-        //const {BrowserWindow,dialog,Menu} = remote
-
+        const { ipcRenderer } = window.require("electron")
+        const res = ipcRenderer.sendSync("alert", JSON.stringify({}));
+        console.log(res)
     }
-
     console.log("button clicked")
+}
 
+const handleDemoClickAsync = () => {
+    if(isOnElectron){
 
+        const { ipcRenderer } = window.require("electron")
+
+        ipcRenderer.invoke(ElectronMessages.ECHO_MSG, JSON.stringify({payload: 'HI'})).then((result: any) => {
+            console.log('invoke reply:' + result)
+        })
+    }
+    console.log("button clicked")
 }
 
 function App() {
@@ -34,32 +39,9 @@ function App() {
             <div>
                 <h1>Hello! Welcome to the homepage!</h1>
                  <h1> You are running on Electron! </h1>
-                <button onClick={handleDemoClick}> Alert! </button>
-                <button onClick={()=>{
-                    const { ipcRenderer } = window.require("electron")
-                    ipcRenderer.send("alert", JSON.stringify({}));
+                <button onClick={handleDemoClick}> Show Error Box Synchronous</button>
+                <button onClick={handleDemoClickAsync}> Show Error Box Async</button>
 
-                    //const electron = window.require('electron');
-                    //require("@electron/remote/main").enable(webContents)
-                    //console.log("electron:")
-                    //console.log(electron)
-                    //const {app} = window.require('@electron/remote')
-                    //console.log("app: ")
-                        //const { ipcRenderer } = require('electron')
-//to minimize
-                        //ipcRenderer.send('alert', {});//data contains any extra info you may need to send
-                    //.log(app)
-
-                    //console.log(app.getAppPath())
-                    //const remote = app.remote
-                    //console.log(remote)
-                    //const {BrowserWindow,dialog,Menu} = remote
-                    //console.log(BrowserWindow)
-                    //let win = new BrowserWindow()
-                    //dialog.showErrorBox('Error Box','Fatal Error')
-                }}>
-                    Show Error Box
-                </button>
             </div>
         )
     }

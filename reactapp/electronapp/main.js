@@ -4,6 +4,7 @@
 const {app, BrowserWindow} = require('electron')
 require('@electron/remote/main').initialize()
 const {REACT_ADDRESS} = require("../src/GeneralConstants");
+const {ElectronMessages} = require("../src/ElectronCommunication/ElectronMessages")
 
 const fs = require('fs')
 const path = require('path')
@@ -17,7 +18,7 @@ function createWindow () {
         width: 800,
         height: 600,
         webPreferences: {
-            //preload: path.join(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
             enableRemoteModule: true,
             contextIsolation: false,
@@ -30,7 +31,7 @@ function createWindow () {
 
     // Open the DevTools.
 
-     mainWindow.webContents.openDevTools()
+     mainWindow.webContents.openDevTools({ mode: 'detach' })
 }
 
 const { ipcMain } = require("electron");
@@ -41,8 +42,21 @@ ipcMain.on("alert", (event, data) => {
 // we can send reply to react using below code
     console.log("electron: ipc alert")
     dialog.showErrorBox("error title", "cool error")
-    //event.reply(“send-data-event-name-reply”, ‘Hey react app processed your event’);
+
+    let date_ob = new Date();
+    let hours = date_ob.getHours();
+    let minutes = date_ob.getMinutes();
+    let seconds = date_ob.getSeconds();
+    //event.reply("alert-demo-reply", `Showed alert at ${hours}:${minutes}:${seconds}`);
+    event.returnValue = {payload: `Showed alert at ${hours}:${minutes}:${seconds}`}
 });
+
+ipcMain.handle(ElectronMessages.ECHO_MSG, async (event, ...args) => {
+    console.log(args)
+    dialog.showErrorBox("error title", "cool async error")
+    return args
+})
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
