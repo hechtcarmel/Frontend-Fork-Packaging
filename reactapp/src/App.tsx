@@ -10,6 +10,15 @@ const isOnElectron = isElectron()
 console.log("Is running on Electron? " + isElectron());
 
 function App() {
+    if(isOnElectron){
+        return (
+            <div>
+                <h1>Hello! Welcome to the homepage!</h1>
+                <>  <h1> You are running on Electron! </h1></>
+            </div>
+        )
+    }
+
   return (
       <div className="App">
       <BrowserRouter >
