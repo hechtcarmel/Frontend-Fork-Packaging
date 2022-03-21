@@ -1,19 +1,22 @@
 import React from 'react';
-import Home from './Pages/Home/Home'
+import HomePage from './Pages/HomePage/HomePage'
 
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import isElectron from 'is-electron';
+
+const isOnElectron = isElectron()
+console.log("Is running on Electron? " + isElectron());
 
 function App() {
   return (
       <div className="App">
       <BrowserRouter >
-
           <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="add" element={<AddUser />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<ErrorPage />} />
           </Routes>
-
       </BrowserRouter>
       </div>
 
