@@ -1,11 +1,12 @@
 import React from 'react';
 import HomePage from './Pages/HomePage/HomePage'
-
+import AppsCatalogPage from './Pages/AppsPage/AppsCatalogPage'
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import isElectron from 'is-electron';
 import {ElectronMessages} from "./ElectronCommunication/ElectronMessages";
+import ReactDOM from "react-dom";
 //import {webContents} from "@electron/remote";
 
 const isOnElectron = isElectron()
@@ -34,6 +35,20 @@ const handleDemoClickAsync = () => {
 }
 
 function App() {
+
+    return (
+        <div className="App">
+            <BrowserRouter >
+                <Routes>
+                    <Route path="/" element={<AppsCatalogPage />} />
+                    <Route path="/home" element={<HomePage />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
+
+
+    /*
     if(isOnElectron){
         return (
             <div>
@@ -55,9 +70,8 @@ function App() {
           </Routes>
       </BrowserRouter>
       </div>
-
-
-  );
+  */
+    );
 }
 
 export default App;

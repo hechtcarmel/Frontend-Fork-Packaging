@@ -15,6 +15,7 @@
     "electron-is-dev": "^2.0.0",
     "fs": "^0.0.1-security",
     "is-electron": "^2.2.1",
+    "mdb-react-ui-kit": "^3.0.0",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
