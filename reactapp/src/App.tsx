@@ -7,6 +7,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import isElectron from 'is-electron';
 import {ElectronMessages} from "./ElectronCommunication/ElectronMessages";
 import ReactDOM from "react-dom";
+import NavigationBar from "./Pages/Shared/NavigationBar";
 //import {webContents} from "@electron/remote";
 
 const isOnElectron = isElectron()
@@ -39,6 +40,7 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter >
+                <NavigationBar />
                 <Routes>
                     <Route path="/" element={<AppsCatalogPage />} />
                     <Route path="/home" element={<HomePage />} />
