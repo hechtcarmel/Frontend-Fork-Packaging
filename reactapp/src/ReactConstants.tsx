@@ -6,5 +6,5 @@ export const PagePaths = {
     NotFoundPagePath: '*'
 }
 
-export const APPS_PER_PAGE: number = 8
+export const APPS_PER_PAGE: number = 16
 

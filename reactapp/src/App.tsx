@@ -15,7 +15,6 @@ import UploadPage from "./Pages/UploadPage/UploadPage";
 import {PagePaths} from "./ReactConstants";
 import AppData from './Pages/AppsPage/AppData';
 import DUMMY_APPS from "./Pages/AppsPage/DummyApps";
-import  IS_DEBUG from './SharedConstants'
 
 
 console.log("Is running on Electron? " + isElectron());

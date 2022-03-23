@@ -13,7 +13,7 @@ function AppTile({appData} : {appData:AppData}) {
 
 
     return (
-        <MDBCard style={{maxWidth: '21rem'}}>
+        <MDBCard style={{maxWidth: '26rem', padding: '10px', margin: '10px', marginTop: '20px'}}>
             <MDBCardImage src={appData.img_url ? appData.img_url : no_image_alt} position='top' alt='...'/>
             <MDBCardBody>
                 <MDBCardTitle>{appData.name}</MDBCardTitle>
