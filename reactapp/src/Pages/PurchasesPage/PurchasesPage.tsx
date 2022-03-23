@@ -1,7 +1,8 @@
 import React from "react"
+import {IS_ON_ELECTRON} from '../../GeneralConstants'
 
-function HomePage(){
-    if(false){
+function PurchasesPage(){
+    if(IS_ON_ELECTRON){
         return (
             <div>
                 <h1>Hello! Welcome to the homepage!</h1>
@@ -9,6 +10,8 @@ function HomePage(){
             </div>
         )
     }
+
+
     else{
         return (
             <div>
@@ -19,4 +22,4 @@ function HomePage(){
 
 }
 
-export default HomePage
+export default PurchasesPage

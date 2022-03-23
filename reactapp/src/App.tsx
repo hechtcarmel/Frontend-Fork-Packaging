@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from './Pages/HomePage/HomePage'
+import PurchasesPage from './Pages/PurchasesPage/PurchasesPage'
 import AppsCatalogPage from './Pages/AppsPage/AppsCatalogPage'
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -11,12 +11,12 @@ import NavigationBar from "./Pages/Shared/NavigationBar";
 import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
 //import {webContents} from "@electron/remote";
-const isOnElectron = isElectron()
-
+import {IS_ON_ELECTRON} from './GeneralConstants'
+import UploadPage from "./Pages/UploadPage/UploadPage";
 console.log("Is running on Electron? " + isElectron());
 
 const handleDemoClick = () => {
-    if(isOnElectron){
+    if(IS_ON_ELECTRON){
         const { ipcRenderer } = window.require("electron")
         const res = ipcRenderer.sendSync("alert", JSON.stringify({}));
         console.log(res)
@@ -25,7 +25,7 @@ const handleDemoClick = () => {
 }
 
 const handleDemoClickAsync = () => {
-    if(isOnElectron){
+    if(IS_ON_ELECTRON){
 
         const { ipcRenderer } = window.require("electron")
 
@@ -45,7 +45,8 @@ function App() {
                 <NavigationBar />
                 <Routes>
                     <Route path="/" element={<AppsCatalogPage />} />
-                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/purchases" element={<PurchasesPage />} />
+                    <Route path="/upload" element={<UploadPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
                 <Footer />
@@ -71,7 +72,7 @@ function App() {
       <div className="App">
       <BrowserRouter >
           <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<PurchasesPage />} />
               <Route path="*" element={<ErrorPage />} />
           </Routes>
       </BrowserRouter>
