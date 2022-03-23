@@ -3,8 +3,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 export default function NavigationBar(){
     return(
-       <div>
-           <nav className="navbar navbar-light bg-light">
+       <>
+           <nav className="navbar sticky-top navbar-light bg-light">
                <div className="container-fluid">
                    <a className="navbar-brand">dAppstore</a>
                    <form className="d-flex input-group w-auto">
@@ -21,7 +21,7 @@ export default function NavigationBar(){
                    </form>
                </div>
            </nav>
-       </div>
+       </>
     )
 }
 

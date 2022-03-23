@@ -8,8 +8,9 @@ import isElectron from 'is-electron';
 import {ElectronMessages} from "./ElectronCommunication/ElectronMessages";
 import ReactDOM from "react-dom";
 import NavigationBar from "./Pages/Shared/NavigationBar";
+import Footer from "./Pages/Shared/Footer";
+import SideNav from "./Pages/Shared/SideNav";
 //import {webContents} from "@electron/remote";
-
 const isOnElectron = isElectron()
 
 console.log("Is running on Electron? " + isElectron());
@@ -34,18 +35,21 @@ const handleDemoClickAsync = () => {
     }
     console.log("button clicked")
 }
-
+//<NavigationBar />
 function App() {
 
     return (
         <div className="App">
             <BrowserRouter >
+                <SideNav />
                 <NavigationBar />
                 <Routes>
                     <Route path="/" element={<AppsCatalogPage />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
+                <Footer />
+
             </BrowserRouter>
         </div>
 
