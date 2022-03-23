@@ -1,12 +1,15 @@
 import './CSS/SideNav.css'
+import {Link} from "react-router-dom";
 
 export default function SideNav() {
     return (
 
         <div>
+
             <nav className="sidenavbar">
                 <ul className="sidenavbar-sidenav">
                     <li className="logo">
+
                         <a href="#" className="sidenav-link">
                             <span className="link-text logo-text">Menu</span>
                             <svg
@@ -36,6 +39,7 @@ export default function SideNav() {
                     </li>
 
                     <li className="sidenav-item">
+                        <Link to="/" >
                         <a href="#" className="sidenav-link">
                             <svg
                                 aria-hidden="true"
@@ -60,11 +64,13 @@ export default function SideNav() {
                                     ></path>
                                 </g>
                             </svg>
-                            <span className="link-text">Apps</span>
+                            <span className="link-text">Apps </span>
                         </a>
+                        </Link>
                     </li>
 
                     <li className="sidenav-item">
+                        <Link to="/purchases" >
                         <a href="#" className="sidenav-link">
                             <svg
                                 aria-hidden="true"
@@ -91,9 +97,11 @@ export default function SideNav() {
                             </svg>
                             <span className="link-text">My Purchases</span>
                         </a>
+                        </Link>
                     </li>
 
                     <li className="sidenav-item">
+                        <Link to="/upload" >
                         <a href="#" className="sidenav-link">
                             <svg
                                 aria-hidden="true"
@@ -120,6 +128,7 @@ export default function SideNav() {
                             </svg>
                             <span className="link-text">Upload</span>
                         </a>
+                        </Link>
                     </li>
 
                     <li className="sidenav-item">

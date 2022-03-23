@@ -10,7 +10,6 @@ function ErrorPage(){
         )
     }
     else{
-
         return (
             <div id="upload-page-electron-view-div">
                 <h1>Congratulation on  openning our Desktop App! </h1>
