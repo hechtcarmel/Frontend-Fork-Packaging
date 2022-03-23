@@ -2,18 +2,33 @@
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import './CSS/NavigationBar.css'
 import { AiOutlineSearch } from 'react-icons/ai';
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useState} from "react";
 import {useLocation} from "react-router-dom";
-import {PagePaths} from "../../ReactConstants";
+import {APPS_PER_PAGE, PagePaths} from "../../ReactConstants";
+import AppData from "../AppsPage/AppData";
+import {getDisplayedApps, getDisplayedAppsObj} from "../AppsPage/AppsCatalogPage";
 
+interface NavigationBarProps{
+    setDisplayedApps: Dispatch<SetStateAction<Array<AppData>>>,
+    setNumberOfPages: Dispatch<SetStateAction<number>>,
+}
 
-export default function NavigationBar(){
+export default function NavigationBar(props: NavigationBarProps){
+    const setDisplayedApps = props.setDisplayedApps
+    const setNumberOfPages = props.setNumberOfPages
+
     const location = useLocation()
-
     const [searchQuery, setSearchQuery] = useState<string>('')
+
     const handleSearchSubmit = (event: FormEvent) => {
         event.preventDefault() //Otherwise refreshes the page
-        setSearchQuery('')
+
+        let res: getDisplayedAppsObj = getDisplayedApps(0, APPS_PER_PAGE, searchQuery)
+        setDisplayedApps(res.displayedApps)
+        setNumberOfPages(res.pageCount)
+
+        //Reset the search query
+        //setSearchQuery('')
     }
 
     const renderSearchbar = () => {

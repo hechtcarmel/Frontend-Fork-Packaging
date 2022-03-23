@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PurchasesPage from './Pages/PurchasesPage/PurchasesPage'
 import AppsCatalogPage from './Pages/AppsPage/AppsCatalogPage'
 import './App.css';
@@ -10,10 +10,13 @@ import ReactDOM from "react-dom";
 import NavigationBar from "./Pages/Shared/NavigationBar";
 import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
-//import {webContents} from "@electron/remote";
 import {IS_ON_ELECTRON} from './SharedConstants'
 import UploadPage from "./Pages/UploadPage/UploadPage";
 import {PagePaths} from "./ReactConstants";
+import AppData from './Pages/AppsPage/AppData';
+import DUMMY_APPS from "./Pages/AppsPage/DummyApps";
+import  IS_DEBUG from './SharedConstants'
+
 
 console.log("Is running on Electron? " + isElectron());
 
@@ -37,19 +40,43 @@ const handleDemoClickAsync = () => {
     }
     console.log("button clicked")
 }
-//<NavigationBar />
+
+
+
+
 function App() {
+
+    const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([])
+    const [numberOfPages, setNumberOfPages] = useState<number>(0)
+
 
     return (
         <div className="App">
             <BrowserRouter >
                 <SideNav />
-                <NavigationBar />
+                <NavigationBar
+                    setNumberOfPages={setNumberOfPages}
+                    setDisplayedApps={setDisplayedApps}
+                />
                 <Routes>
-                    <Route path={PagePaths.AppsPagePath} element={<AppsCatalogPage />} />
-                    <Route path={PagePaths.PurchasesPagePath} element={<PurchasesPage />} />
-                    <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
-                    <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
+                    <Route
+                        path={PagePaths.AppsPagePath}
+                        element={
+                        <AppsCatalogPage
+                            displayedApps={displayedApps}
+                            numberOfPages={numberOfPages}
+                            setNumberOfPages={setNumberOfPages}
+                            setDisplayedApps={setDisplayedApps}
+                        />} />
+                    <Route
+                        path={PagePaths.PurchasesPagePath}
+                        element={<PurchasesPage />} />
+                    <Route
+                        path={PagePaths.UploadPagePath}
+                        element={<UploadPage />} />
+                    <Route
+                        path={PagePaths.NotFoundPagePath}
+                        element={<ErrorPage />} />
                 </Routes>
                 <Footer />
 
