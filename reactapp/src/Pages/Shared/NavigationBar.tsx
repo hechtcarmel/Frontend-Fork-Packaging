@@ -13,9 +13,6 @@ export default function NavigationBar(){
     const [searchQuery, setSearchQuery] = useState<string>('')
     const handleSearchSubmit = (event: FormEvent) => {
         event.preventDefault() //Otherwise refreshes the page
-        console.log('pathname: ', )
-        console.log('location pathname: ', location.pathname)
-
         setSearchQuery('')
     }
 

@@ -9,8 +9,8 @@ interface PaginationProps{
 export default function Pagination(props: PaginationProps){
 
     return(
-        <ReactPaginate previousLabel={'next'}
-                       nextLabel={'previous'}
+        <ReactPaginate previousLabel={'Previous'}
+                       nextLabel={'Next'}
                        breakLabel={'...'}
                        pageCount={props.numberOfPages}
                        marginPagesDisplayed={2}
