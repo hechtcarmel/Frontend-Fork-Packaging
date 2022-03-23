@@ -4,6 +4,7 @@ import './CSS/NavigationBar.css'
 import { AiOutlineSearch } from 'react-icons/ai';
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useLocation} from "react-router-dom";
+import {PagePaths} from "../../ReactConstants";
 
 
 export default function NavigationBar(){
@@ -19,7 +20,7 @@ export default function NavigationBar(){
     }
 
     const renderSearchbar = () => {
-        if(location.pathname === '/'){
+        if(location.pathname === PagePaths.AppsPagePath){
             return (
                 <form className="searchArea d-flex input-group w-auto" onSubmit={handleSearchSubmit} >
                     <input

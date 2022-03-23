@@ -1,6 +1,6 @@
 import React from "react"
 import './UploadPage.css'
-import {IS_ON_ELECTRON} from '../../GeneralConstants'
+import {IS_ON_ELECTRON} from '../../SharedConstants'
 function ErrorPage(){
     if(!IS_ON_ELECTRON){
         return (

@@ -11,8 +11,10 @@ import NavigationBar from "./Pages/Shared/NavigationBar";
 import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
 //import {webContents} from "@electron/remote";
-import {IS_ON_ELECTRON} from './GeneralConstants'
+import {IS_ON_ELECTRON} from './SharedConstants'
 import UploadPage from "./Pages/UploadPage/UploadPage";
+import {PagePaths} from "./ReactConstants";
+
 console.log("Is running on Electron? " + isElectron());
 
 const handleDemoClick = () => {
@@ -44,10 +46,10 @@ function App() {
                 <SideNav />
                 <NavigationBar />
                 <Routes>
-                    <Route path="/" element={<AppsCatalogPage />} />
-                    <Route path="/purchases" element={<PurchasesPage />} />
-                    <Route path="/upload" element={<UploadPage />} />
-                    <Route path="*" element={<ErrorPage />} />
+                    <Route path={PagePaths.AppsPagePath} element={<AppsCatalogPage />} />
+                    <Route path={PagePaths.PurchasesPagePath} element={<PurchasesPage />} />
+                    <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
+                    <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
                 </Routes>
                 <Footer />
 

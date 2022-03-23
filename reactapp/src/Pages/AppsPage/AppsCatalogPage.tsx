@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import AppsCatalog from "./Components/AppsCatalog";
 import './Components/CSS/AppsCatalogPage.css';
 import AppData from "./AppData";
-import  IS_DEBUG from '../../GeneralConstants.js'
+import  IS_DEBUG from '../../SharedConstants.js'
 import DUMMY_APPS from './DummyApps'
 import Pagination from "./Components/Pagination";
 

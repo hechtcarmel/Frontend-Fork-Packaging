@@ -1,5 +1,5 @@
 import React from "react"
-import {IS_ON_ELECTRON} from '../../GeneralConstants'
+import {IS_ON_ELECTRON} from '../../SharedConstants'
 
 function PurchasesPage(){
     if(IS_ON_ELECTRON){
