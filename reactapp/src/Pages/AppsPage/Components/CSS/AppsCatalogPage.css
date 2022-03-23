@@ -42,7 +42,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
-    margin-left: 5rem
+    margin-left: 5rem;
+    margin-bottom: 110px;
 }
 
 .app-title {
