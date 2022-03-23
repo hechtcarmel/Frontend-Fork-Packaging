@@ -3,7 +3,7 @@ import AppData from "./AppData";
 
 
 const DUMMY_APPS: AppData[] = [];
-for (let i=0; i< 10; i++){
+for (let i=0; i< 50; i++){
     DUMMY_APPS.push(
         {
             id: i,

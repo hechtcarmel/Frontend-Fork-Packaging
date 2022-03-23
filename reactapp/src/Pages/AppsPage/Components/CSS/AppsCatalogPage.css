@@ -48,3 +48,14 @@
 .app-title {
     font-size: 2em;
 }
+
+#pagination-div{
+    position: fixed;
+    width: 500px;
+    height: 200px;
+
+    top: 100%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -250px;
+}
