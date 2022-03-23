@@ -15,7 +15,8 @@
     transition: width 600ms ease;
     overflow: scroll;
     z-index:9;
-    margin-top: 45px
+    margin-top: 45px;
+    overflow: hidden;
 }
 
 .sidenavbar-sidenav {
