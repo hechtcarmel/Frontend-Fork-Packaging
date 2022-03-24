@@ -2,4 +2,15 @@
     width: 50%;
     position: relative;
     margin: auto;
+
+}
+
+.invalid-field-text{
+    color: red;
+
+}
+
+#upload-form-title{
+    text-decoration: underline;
+    margin-top: 15px;
 }

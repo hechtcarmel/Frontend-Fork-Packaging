@@ -9,6 +9,7 @@ export const PagePaths = {
 };
 
 export const APPS_PER_PAGE: number = 16;
+export const MAX_DESCRIPTION_LENGTH: number = 300;
 
 export const DEFAULT_EMPTY_APP: AppData = {
   id: 0,

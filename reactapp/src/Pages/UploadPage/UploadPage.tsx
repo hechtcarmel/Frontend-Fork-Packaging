@@ -3,14 +3,17 @@ import "./UploadPage.css";
 import { IS_ON_ELECTRON } from "../../SharedConstants";
 import UploadForm from "./Components/UploadForm";
 
-function ErrorPage() {
+function UploadPage() {
+  return <UploadForm />;
+}
+/*
   if (!IS_ON_ELECTRON) {
     return (
       <>
         <div id="upload-page-goto-desktop-div">
           <h1>Files can only be uploaded from our desktop application!</h1>
         </div>
-        <UploadForm />
+        <
       </>
     );
   } else {
@@ -31,5 +34,5 @@ function ErrorPage() {
     </div>
   );
 }
-
-export default ErrorPage;
+*/
+export default UploadPage;
