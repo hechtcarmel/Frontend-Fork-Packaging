@@ -47,6 +47,8 @@ interface AppsCatalogPageProps {
   setDisplayedApps: Dispatch<SetStateAction<Array<AppData>>>;
   numberOfPages: number;
   setNumberOfPages: Dispatch<SetStateAction<number>>;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 function AppsCatalogPage(props: AppsCatalogPageProps) {
@@ -85,6 +87,8 @@ function AppsCatalogPage(props: AppsCatalogPageProps) {
         showModal={showModal}
         toggleShowModal={toggleShowModal}
         setShowModal={setShowModal}
+        isLoading={props.isLoading}
+        setIsLoading={props.setIsLoading}
       />
       <div id="apps-catalog">
         <AppsCatalog

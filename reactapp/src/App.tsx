@@ -44,7 +44,7 @@ const handleDemoClickAsync = () => {
 function App() {
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
     <div className="App">
       <BrowserRouter>
@@ -62,6 +62,8 @@ function App() {
                 numberOfPages={numberOfPages}
                 setNumberOfPages={setNumberOfPages}
                 setDisplayedApps={setDisplayedApps}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
             }
           />

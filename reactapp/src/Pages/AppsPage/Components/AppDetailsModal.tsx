@@ -23,6 +23,8 @@ interface AppDetailsModalProps {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   toggleShowModal: any;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function AppDetailsModal({
@@ -30,6 +32,8 @@ export default function AppDetailsModal({
   showModal,
   setShowModal,
   toggleShowModal,
+  isLoading,
+  setIsLoading,
 }: AppDetailsModalProps) {
   const [rating, setRating] = useState<number>(0); // initial rating value
   const [ownedState, setOwnedStateState] = useState<boolean>(false);
@@ -71,11 +75,16 @@ export default function AppDetailsModal({
         window.open("https://easyupload.io/ihr4mn");
       }
     } else {
+      setIsLoading(true);
       return fetch("https://reqres.in/api/users/1")
         .then((response) => response.json())
         .then((data) => console.log(data))
         .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
-        .then(() => setAppOwned(true));
+        .then(() => setAppOwned(true))
+        .catch((err) => {
+          /*TODO*/
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
@@ -85,26 +94,21 @@ export default function AppDetailsModal({
 
   return (
     <>
-      <MDBModal show={showModal} setShow={setShowModal} tabIndex={-1}>
+      <MDBModal
+        show={showModal}
+        setShow={setShowModal}
+        tabIndex={-1}
+        staticBackdrop={isLoading}
+      >
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{app.name}</MDBModalTitle>
               {ownedState ? (
-                <Rating
-                  style={{ left: "160px", position: "relative" }}
-                  onClick={handleRatingChanged}
-                  ratingValue={rating}
-                />
+                <Rating onClick={handleRatingChanged} ratingValue={rating} />
               ) : (
                 <></>
               )}
-
-              <MDBBtn
-                className="btn-close"
-                color="none"
-                onClick={toggleShowModal}
-              ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
               <MDBCardImage
