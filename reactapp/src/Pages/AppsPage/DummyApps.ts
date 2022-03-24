@@ -6,7 +6,7 @@ for (let i = 0; i < 50; i++) {
   DUMMY_APPS.push({
     id: i,
     creator: `John Smith #${i}`,
-    description: `Cool Description #${i}`,
+    description: `Cool Description #${i} Cool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool Description3`,
     img_url:
       i % 3 == 0
         ? "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"

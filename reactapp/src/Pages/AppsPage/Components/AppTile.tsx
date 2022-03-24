@@ -38,18 +38,32 @@ function AppTile({
       }}
     >
       <MDBCardImage
-        style={{ height: "250px", width: "250x", border: "1px solid" }}
+        style={{ height: "200px", width: "auto", border: "1px solid" }}
         src={appData.img_url ? appData.img_url : no_image_alt}
         position="top"
         alt="..."
       />
-      <MDBCardBody style={{ height: "140px" }}>
+      <MDBCardBody
+        style={{
+          height: "140px",
+          overflowY: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
         <MDBCardTitle>{appData.name}</MDBCardTitle>
         <MDBCardText>{appData.description}</MDBCardText>
-        <MDBBtn onClick={handleShowDetails} href="#">
-          Details
-        </MDBBtn>
       </MDBCardBody>
+      <MDBBtn
+        style={{
+          marginTop: "20px",
+          width: "90px",
+          alignSelf: "center",
+        }}
+        onClick={handleShowDetails}
+        href="#"
+      >
+        Details
+      </MDBBtn>
     </MDBCard>
   );
 }

@@ -15,6 +15,8 @@ import appData from "../AppData";
 import no_image_alt from "./app_no_image_alt.jpg";
 import "./CSS/AppDetailsModal.css";
 import { Rating } from "react-simple-star-rating";
+import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
+import isElectron from "is-electron";
 
 interface AppDetailsModalProps {
   app: appData;
@@ -29,10 +31,19 @@ export default function AppDetailsModal({
   setShowModal,
   toggleShowModal,
 }: AppDetailsModalProps) {
-  const [rating, setRating] = useState(0); // initial rating value
+  const [rating, setRating] = useState<number>(0); // initial rating value
+  const [ownedState, setOwnedStateState] = useState<boolean>(false);
+
+  const setAppOwned = (new_owned: boolean) => {
+    setOwnedStateState(new_owned);
+    app.owned = new_owned;
+    if (new_owned) {
+    }
+  };
 
   useEffect(() => {
     setRating(app.myRating === undefined ? 0 : app.myRating);
+    setOwnedStateState(app.owned);
   }, [app]);
 
   const handleRatingChanged = (newRating: number) => {
@@ -46,6 +57,31 @@ export default function AppDetailsModal({
   function getMyRating() {
     return app.myRating === undefined ? 0 : app.myRating;
   }
+  function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const handlePurchaseBtn = async () => {
+    //TODO: Add error handling.
+
+    if (ownedState) {
+      if (isElectron()) {
+        // Do download
+      } else {
+        window.open("https://easyupload.io/ihr4mn");
+      }
+    } else {
+      return fetch("https://reqres.in/api/users/1")
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
+        .then(() => setAppOwned(true));
+    }
+  };
+
+  const getBtnText = () => {
+    return ownedState ? "Download" : "Purchase";
+  };
 
   return (
     <>
@@ -54,7 +90,7 @@ export default function AppDetailsModal({
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{app.name}</MDBModalTitle>
-              {app.owned ? (
+              {ownedState ? (
                 <Rating
                   style={{ left: "160px", position: "relative" }}
                   onClick={handleRatingChanged}
@@ -72,7 +108,7 @@ export default function AppDetailsModal({
             </MDBModalHeader>
             <MDBModalBody>
               <MDBCardImage
-                style={{ height: "250px", width: "250x", border: "1px solid" }}
+                style={{ height: "200px", width: "auto", border: "1px solid" }}
                 src={app.img_url ? app.img_url : no_image_alt}
                 position="top"
                 alt="..."
@@ -91,7 +127,9 @@ export default function AppDetailsModal({
                 <span className="span_underline">Rating</span> : {app.rating}
               </text>
 
-              <MDBBtn>Purchase</MDBBtn>
+              <SpinnerButton onClick={handlePurchaseBtn}>
+                {getBtnText()}
+              </SpinnerButton>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
@@ -99,3 +137,5 @@ export default function AppDetailsModal({
     </>
   );
 }
+/*              <MDBBtn>Purchase</MDBBtn>
+ */
