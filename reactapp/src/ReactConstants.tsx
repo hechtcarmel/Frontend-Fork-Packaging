@@ -22,4 +22,5 @@ export const DEFAULT_EMPTY_APP: AppData = {
   SHA: "256da46546fd",
   version: 1.0,
   owned: true,
+  myRating: 4,
 };

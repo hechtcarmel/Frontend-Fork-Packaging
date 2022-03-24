@@ -10,6 +10,7 @@ interface AppData {
   publication_date?: string;
   creator?: string;
   owned: boolean;
+  myRating?: number;
 }
 
 export default AppData;

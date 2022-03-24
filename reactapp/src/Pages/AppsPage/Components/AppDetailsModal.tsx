@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   MDBBtn,
   MDBModal,
@@ -14,6 +14,7 @@ import {
 import appData from "../AppData";
 import no_image_alt from "./app_no_image_alt.jpg";
 import "./CSS/AppDetailsModal.css";
+import { Rating } from "react-simple-star-rating";
 
 interface AppDetailsModalProps {
   app: appData;
@@ -31,6 +32,18 @@ export default function AppDetailsModal({
   setShowModal,
 }: AppDetailsModalProps) {
   const toggleShow = () => setShowModal(!showModal);
+  const [myRating, setMyRating] = useState<number>(0);
+
+  const handleRatingChanged = (newRating: number) => {
+    console.log(newRating);
+    app.myRating = newRating;
+
+    //send to backend/blockchain.
+  };
+
+  function getMyRating() {
+    return app.myRating === undefined ? 0 : app.myRating;
+  }
 
   return (
     <>
@@ -40,6 +53,12 @@ export default function AppDetailsModal({
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{app.name}</MDBModalTitle>
+              <Rating
+                onClick={handleRatingChanged}
+                initialValue={app.myRating}
+                ratingValue={0}
+              />
+
               <MDBBtn
                 className="btn-close"
                 color="none"
