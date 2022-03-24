@@ -54,7 +54,15 @@ export default function AppDetailsModal({
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{app.name}</MDBModalTitle>
-              <Rating onClick={handleRatingChanged} ratingValue={rating} />
+              {app.owned ? (
+                <Rating
+                  style={{ left: "160px", position: "relative" }}
+                  onClick={handleRatingChanged}
+                  ratingValue={rating}
+                />
+              ) : (
+                <></>
+              )}
 
               <MDBBtn
                 className="btn-close"
