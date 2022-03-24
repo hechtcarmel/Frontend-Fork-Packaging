@@ -58,6 +58,7 @@ function AppsCatalogPage(props: AppsCatalogPageProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedAppData, setSelectedAppData] =
     useState<AppData>(DEFAULT_EMPTY_APP);
+  const toggleShowModal = () => setShowModal(!showModal);
 
   //Display Dummy apps
   useEffect(() => {
@@ -82,12 +83,15 @@ function AppsCatalogPage(props: AppsCatalogPageProps) {
       <AppDetailsModal
         app={selectedAppData}
         showModal={showModal}
+        toggleShowModal={toggleShowModal}
         setShowModal={setShowModal}
       />
       <div id="apps-catalog">
         <AppsCatalog
           displayedApps={displayedApps}
           setDisplayedApps={setDisplayedApps}
+          toggleShowModal={toggleShowModal}
+          setSelectedAppData={setSelectedAppData}
         />
       </div>
       <div id="pagination-div">

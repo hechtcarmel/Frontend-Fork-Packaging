@@ -13,11 +13,21 @@ import AppData from "../AppData";
 
 interface AppTileProps {
   appData: AppData;
+  toggleShowModal: any;
+  setSelectedAppData: any;
 }
 
-function AppTile({ appData }: { appData: AppData }) {
+function AppTile({
+  appData,
+  toggleShowModal,
+  setSelectedAppData,
+}: AppTileProps) {
   //console.log("AppTile: AppData = ", appData)
 
+  const handleShowDetails = () => {
+    setSelectedAppData(appData);
+    toggleShowModal();
+  };
   return (
     <MDBCard
       style={{
@@ -28,7 +38,7 @@ function AppTile({ appData }: { appData: AppData }) {
       }}
     >
       <MDBCardImage
-        style={{ height: "200px", border: "1px solid" }}
+        style={{ height: "250px", width: "250x", border: "1px solid" }}
         src={appData.img_url ? appData.img_url : no_image_alt}
         position="top"
         alt="..."
@@ -36,7 +46,9 @@ function AppTile({ appData }: { appData: AppData }) {
       <MDBCardBody style={{ height: "140px" }}>
         <MDBCardTitle>{appData.name}</MDBCardTitle>
         <MDBCardText>{appData.description}</MDBCardText>
-        <MDBBtn href="#">Details</MDBBtn>
+        <MDBBtn onClick={handleShowDetails} href="#">
+          Details
+        </MDBBtn>
       </MDBCardBody>
     </MDBCard>
   );

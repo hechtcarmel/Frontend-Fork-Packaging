@@ -20,6 +20,7 @@ for (let i = 0; i < 50; i++) {
     SHA: "256da46546fd",
     version: 1.0,
     owned: i % 2 == 0 ? true : false,
+    myRating: i % 5 == 0 ? undefined : (i % 5) * 20,
   });
 }
 

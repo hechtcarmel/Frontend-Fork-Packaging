@@ -20,22 +20,24 @@ interface AppDetailsModalProps {
   app: appData;
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
-}
-
-function MDBRating(props: { data: any }) {
-  return null;
+  toggleShowModal: any;
 }
 
 export default function AppDetailsModal({
   app,
   showModal,
   setShowModal,
+  toggleShowModal,
 }: AppDetailsModalProps) {
-  const toggleShow = () => setShowModal(!showModal);
-  const [myRating, setMyRating] = useState<number>(0);
+  const [rating, setRating] = useState(0); // initial rating value
+
+  useEffect(() => {
+    setRating(app.myRating === undefined ? 0 : app.myRating);
+  }, [app]);
 
   const handleRatingChanged = (newRating: number) => {
     console.log(newRating);
+    //setRating(newRating);
     app.myRating = newRating;
 
     //send to backend/blockchain.
@@ -47,27 +49,22 @@ export default function AppDetailsModal({
 
   return (
     <>
-      <MDBBtn onClick={toggleShow}>LAUNCH DEMO MODAL</MDBBtn>
       <MDBModal show={showModal} setShow={setShowModal} tabIndex={-1}>
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{app.name}</MDBModalTitle>
-              <Rating
-                onClick={handleRatingChanged}
-                initialValue={app.myRating}
-                ratingValue={0}
-              />
+              <Rating onClick={handleRatingChanged} ratingValue={rating} />
 
               <MDBBtn
                 className="btn-close"
                 color="none"
-                onClick={toggleShow}
+                onClick={toggleShowModal}
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
               <MDBCardImage
-                style={{ height: "200px", border: "1px solid" }}
+                style={{ height: "250px", width: "250x", border: "1px solid" }}
                 src={app.img_url ? app.img_url : no_image_alt}
                 position="top"
                 alt="..."
