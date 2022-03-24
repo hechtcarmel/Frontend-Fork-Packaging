@@ -36,7 +36,7 @@ function AppTile({ appData }: { appData: AppData }) {
       <MDBCardBody style={{ height: "140px" }}>
         <MDBCardTitle>{appData.name}</MDBCardTitle>
         <MDBCardText>{appData.description}</MDBCardText>
-        <MDBBtn href="#">Purchase</MDBBtn>
+        <MDBBtn href="#">Details</MDBBtn>
       </MDBCardBody>
     </MDBCard>
   );

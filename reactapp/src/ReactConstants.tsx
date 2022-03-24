@@ -13,7 +13,7 @@ export const APPS_PER_PAGE: number = 16;
 export const DEFAULT_EMPTY_APP: AppData = {
   id: 0,
   creator: `Cool Dev`,
-  description: `Cool Dummy App`,
+  description: `Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App.  `,
   img_url: "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
   price: 10,
   name: `Dummy App`,
@@ -21,4 +21,5 @@ export const DEFAULT_EMPTY_APP: AppData = {
   rating: 5,
   SHA: "256da46546fd",
   version: 1.0,
+  owned: true,
 };
