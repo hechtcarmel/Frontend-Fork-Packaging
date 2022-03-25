@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import {
   MDBInput,
   MDBBtn,
@@ -15,15 +15,17 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../Shared/CSS/appImage.css";
 
-export default function App() {
-  /*
-  const [formValue, setFormValue] = useState({
-    name: "",
-    price: "",
-    description: "",
-    img_url: "",
-    company: "",
-  });*/
+export default function UploadForm() {
+  const [uploadedImgUrl, setUploadedImgUrl] = useState<string>("");
+
+  const onImgUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUploadedImgUrl(e.target.value);
+    const img = document.getElementById("upload-form-app-img");
+    if (img) {
+      img.style.display = "block";
+    }
+    formik.handleChange(e);
+  };
 
   const formik = useFormik<any>({
     validateOnChange: false,
@@ -126,7 +128,7 @@ export default function App() {
               <MDBInput
                 value={formik.values.img_url}
                 name="img_url"
-                onChange={formik.handleChange}
+                onChange={onImgUrlChange}
                 id="image-url-input"
                 label="Image URL"
               />
@@ -156,13 +158,20 @@ export default function App() {
 
           <div className={"col-md-2"}>
             <img
-              src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
-              alt="new"
+              src={uploadedImgUrl}
               className={"app-image"}
+              alt={""}
+              id={"upload-form-app-img"}
+              onError={() => {
+                const img = document.getElementById("upload-form-app-img");
+                if (img) {
+                  img.style.display = "none";
+                }
+              }}
             />
           </div>
         </div>
-        <div className="row ">
+        <div className="row g-1">
           <div className="col-md-2">
             <MDBBtn type="submit">Upload</MDBBtn>
           </div>
