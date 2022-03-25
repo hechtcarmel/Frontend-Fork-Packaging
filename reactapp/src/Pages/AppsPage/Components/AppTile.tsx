@@ -10,6 +10,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import no_image_alt from "./app_no_image_alt.jpg";
 import dummy_car from "../product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
 import AppData from "../AppData";
+import "../../Shared/CSS/appImage.css";
 
 interface AppTileProps {
   appData: AppData;
@@ -38,10 +39,10 @@ function AppTile({
       }}
     >
       <MDBCardImage
-        style={{ height: "200px", width: "auto", border: "1px solid" }}
         src={appData.img_url ? appData.img_url : no_image_alt}
         position="top"
         alt="..."
+        className={"app-image"}
       />
       <MDBCardBody
         style={{

@@ -7,11 +7,13 @@ import {
   MDBValidationItem,
   MDBInputGroup,
   MDBValidation,
+  MDBFile,
 } from "mdb-react-ui-kit";
 import "../CSS/UploadForm.css";
 import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import "../../Shared/CSS/appImage.css";
 
 export default function App() {
   /*
@@ -24,6 +26,8 @@ export default function App() {
   });*/
 
   const formik = useFormik<any>({
+    validateOnChange: false,
+    validateOnBlur: false,
     initialValues: {
       name: "",
       price: "",
@@ -74,80 +78,99 @@ export default function App() {
 
   return (
     <>
-      <h1 id="upload-form-title"> Upload Form: </h1>
+      <h1 id="upload-form-title"> Upload You App: </h1>
       <form id="upload-form" className="row g-3" onSubmit={handleSubmit}>
-        <div className="col-md-4">
-          <MDBInput
-            value={formik.values.name}
-            name="name"
-            onChange={formik.handleChange}
-            id="appname-input"
-            label="Application Name"
-            maxLength={20}
-          />
-          {formik.errors.name ? (
-            <p className={"invalid-field-text"}>{formik.errors.name}</p>
-          ) : null}
+        <div className={"row g-1"}>
+          <MDBFile size="lg" id="form-file-upload" />
         </div>
-        <div className="col-md-4">
-          <MDBInput
-            value={formik.values.company}
-            name={"company"}
-            id="company-input"
-            label="Company"
-            onChange={formik.handleChange}
-          />
-          {formik.errors.company ? (
-            <p className={"invalid-field-text"}>{formik.errors.company}</p>
-          ) : null}{" "}
+        <div className={"row g-2"}>
+          <div className="col-md-4">
+            <MDBInput
+              value={formik.values.name}
+              name="name"
+              onChange={formik.handleChange}
+              id="appname-input"
+              label="Application Name"
+              maxLength={20}
+            />
+            {formik.errors.name ? (
+              <p className={"invalid-field-text"}>{formik.errors.name}</p>
+            ) : null}
+          </div>
+          <div className="col-md-4">
+            <MDBInput
+              value={formik.values.company}
+              name={"company"}
+              id="company-input"
+              label="Company"
+              onChange={formik.handleChange}
+            />
+            {formik.errors.company ? (
+              <p className={"invalid-field-text"}>{formik.errors.company}</p>
+            ) : null}{" "}
+          </div>
+          <div className="row g-2">
+            <div className="col-md-2">
+              <MDBInput
+                value={formik.values.price}
+                name="price"
+                onChange={formik.handleChange}
+                id="price-input"
+                label="Price"
+              />
+              {formik.errors.price ? (
+                <p className={"invalid-field-text"}>{formik.errors.price}</p>
+              ) : null}
+            </div>
+            <div className="col-md-6">
+              <MDBInput
+                value={formik.values.img_url}
+                name="img_url"
+                onChange={formik.handleChange}
+                id="image-url-input"
+                label="Image URL"
+              />
+              {formik.errors.img_url ? (
+                <p className={"invalid-field-text"}>{formik.errors.img_url}</p>
+              ) : null}
+            </div>
+          </div>
         </div>
-        <div className="col-md-2">
-          <MDBInput
-            value={formik.values.price}
-            name="price"
-            onChange={formik.handleChange}
-            id="price-input"
-            label="Price"
-          />
-          {formik.errors.price ? (
-            <p className={"invalid-field-text"}>{formik.errors.price}</p>
-          ) : null}
-        </div>
+        <div className="row g-2">
+          <div className="col-md-6">
+            <MDBTextArea
+              value={formik.values.description}
+              name="description"
+              onChange={formik.handleChange}
+              id="description-input"
+              label="Description"
+              rows={5}
+              maxLength={MAX_DESCRIPTION_LENGTH}
+            />
+            {formik.errors.description ? (
+              <p className={"invalid-field-text"}>
+                {formik.errors.description}
+              </p>
+            ) : null}
+          </div>
 
-        <div className="col-md-6">
-          <MDBTextArea
-            value={formik.values.description}
-            name="description"
-            onChange={formik.handleChange}
-            id="description-input"
-            label="Description"
-            rows={5}
-            maxLength={MAX_DESCRIPTION_LENGTH}
-          />
-          {formik.errors.description ? (
-            <p className={"invalid-field-text"}>{formik.errors.description}</p>
-          ) : null}
+          <div className={"col-md-2"}>
+            <img
+              src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+              alt="new"
+              className={"app-image"}
+            />
+          </div>
         </div>
-        <div className="col-md-6">
-          <MDBInput
-            value={formik.values.img_url}
-            name="img_url"
-            onChange={formik.handleChange}
-            id="image-url-input"
-            label="Image URL"
-          />
-          {formik.errors.img_url ? (
-            <p className={"invalid-field-text"}>{formik.errors.img_url}</p>
-          ) : null}
-        </div>
-        <div className="col-12">
-          <MDBBtn type="submit">Upload</MDBBtn>
+        <div className="row ">
+          <div className="col-md-2">
+            <MDBBtn type="submit">Upload</MDBBtn>
+          </div>
         </div>
       </form>
     </>
   );
 }
-
 /*
 return (
   <MDBValidation className="row g-3" id="upload-form">

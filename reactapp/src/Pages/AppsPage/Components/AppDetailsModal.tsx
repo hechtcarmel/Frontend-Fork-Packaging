@@ -17,6 +17,7 @@ import "./CSS/AppDetailsModal.css";
 import { Rating } from "react-simple-star-rating";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import isElectron from "is-electron";
+import "../../Shared/CSS/appImage.css";
 
 interface AppDetailsModalProps {
   app: appData;
@@ -112,10 +113,10 @@ export default function AppDetailsModal({
             </MDBModalHeader>
             <MDBModalBody>
               <MDBCardImage
-                style={{ height: "200px", width: "auto", border: "1px solid" }}
                 src={app.img_url ? app.img_url : no_image_alt}
                 position="top"
                 alt="..."
+                className="app-image"
               />
               <h4 id="description-paragraph-title">Description:</h4>
               <p id="description-paragraph" className="card-text">

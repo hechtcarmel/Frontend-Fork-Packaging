@@ -14,3 +14,7 @@
     text-decoration: underline;
     margin-top: 15px;
 }
+
+#description-input {
+    resize: none;
+}

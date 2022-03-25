@@ -74,6 +74,11 @@ function App() {
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
         </Routes>
+        {/*Prevents footer to hide content */}
+        <div
+          className="clear"
+          style={{ clear: "both", height: "60px" }}
+        ></div>{" "}
         <Footer />
       </BrowserRouter>
     </div>
