@@ -14,6 +14,7 @@ import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../Shared/CSS/appImage.css";
+import WebTorrent from "webtorrent";
 
 export default function UploadForm() {
   const [uploadedImgUrl, setUploadedImgUrl] = useState<string>("");
@@ -39,6 +40,7 @@ export default function UploadForm() {
       company: "",
     },
     validationSchema: Yup.object({
+      appFile: Yup.mixed().required("File is required"),
       name: Yup.string()
         .trim()
         .max(15, "Must be at most 15 characters long!")
@@ -86,6 +88,9 @@ export default function UploadForm() {
             value={formik.values.appFile}
             onChange={formik.handleChange}
           />
+          {formik.errors.name ? (
+            <p className={"invalid-field-text"}>{formik.errors.appFile}</p>
+          ) : null}
         </div>
         <div className={"row g-2"}>
           <div className="col-md-4">
