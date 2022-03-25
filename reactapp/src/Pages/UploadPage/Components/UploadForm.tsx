@@ -31,6 +31,7 @@ export default function UploadForm() {
     validateOnChange: false,
     validateOnBlur: false,
     initialValues: {
+      appFile: "",
       name: "",
       price: "",
       description: "",
@@ -64,14 +65,9 @@ export default function UploadForm() {
     }),
     onSubmit: (values) => {
       console.log("Upload form submitted with values: ", values);
+      //createTorrent(values.appFile);
     },
   });
-
-  /*
-  const onChange = (e: any) => {
-    setFormValue({ ...formValue, [e.target.name]: e.target.value });
-  };
-*/
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -83,7 +79,13 @@ export default function UploadForm() {
       <h1 id="upload-form-title"> Upload You App: </h1>
       <form id="upload-form" className="row g-3" onSubmit={handleSubmit}>
         <div className={"row g-1"}>
-          <MDBFile size="lg" id="form-file-upload" />
+          <MDBFile
+            size="lg"
+            id="form-file-upload"
+            name="appFile"
+            value={formik.values.appFile}
+            onChange={formik.handleChange}
+          />
         </div>
         <div className={"row g-2"}>
           <div className="col-md-4">
