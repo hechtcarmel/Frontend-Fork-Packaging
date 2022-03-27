@@ -1,5 +1,5 @@
 import React from "react";
-import "./UploadPage.css";
+import "../../CSS/UploadPage.css";
 import { IS_ON_ELECTRON } from "../../SharedConstants";
 import UploadForm from "./Components/UploadForm";
 

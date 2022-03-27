@@ -1,5 +1,5 @@
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import "./CSS/footer.css";
+import "../../CSS/footer.css";
 export default function Footer() {
   return (
     <>
@@ -10,7 +10,7 @@ export default function Footer() {
         <div
           className="text-center p-3" /*style="background-color: rgba(0, 0, 0, 0.2)"*/
         >
-          © 2022 Copyright: Carmel Hecht, Lior Ushomirsky, Eliran Torjman
+          © 2022 Copyright: Carmel Hecht, Lior Ushomirsky, Eliran Turgeman
         </div>
       </footer>
     </>

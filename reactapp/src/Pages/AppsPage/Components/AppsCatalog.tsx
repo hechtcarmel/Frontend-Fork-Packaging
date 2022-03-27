@@ -1,5 +1,5 @@
 import AppTile from "./AppTile";
-import "./CSS/AppsCatalogPage.css";
+import "../../../CSS/AppsCatalogPage.css";
 import { Dispatch, SetStateAction } from "react";
 import AppData from "../AppData";
 import Pagination from "./Pagination";

@@ -9,11 +9,11 @@ import {
   MDBValidation,
   MDBFile,
 } from "mdb-react-ui-kit";
-import "../CSS/UploadForm.css";
+import "../../../CSS/UploadForm.css";
 import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "../../Shared/CSS/appImage.css";
+import "../../../CSS/appImage.css";
 import WebTorrent from "webtorrent";
 
 export default function UploadForm() {

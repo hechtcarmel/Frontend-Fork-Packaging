@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AppsCatalog from "./Components/AppsCatalog";
-import "./Components/CSS/AppsCatalogPage.css";
+import "../../CSS/AppsCatalogPage.css";
 import AppData from "./AppData";
 import IS_DEBUG from "../../SharedConstants.js";
 import DUMMY_APPS from "./DummyApps";
