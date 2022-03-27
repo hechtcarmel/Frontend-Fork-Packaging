@@ -6,6 +6,7 @@ export const PagePaths = {
   PurchasesPagePath: "/purchases",
   UploadPagePath: "/upload",
   NotFoundPagePath: "*",
+  MyPublishedPagePath: "/published",
 };
 
 export const APPS_PER_PAGE: number = 16;

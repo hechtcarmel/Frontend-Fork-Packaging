@@ -16,6 +16,7 @@ import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
 import DUMMY_APPS from "./Pages/AppsPage/DummyApps";
 import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
+import Published from "./Pages/MyPublishedPage/Published";
 
 console.log("Is running on Electron? " + isElectron());
 
@@ -73,6 +74,7 @@ function App() {
           />
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
+          <Route path={PagePaths.MyPublishedPagePath} element={Published} />
         </Routes>
         {/*Prevents footer to hide content */}
         <div
