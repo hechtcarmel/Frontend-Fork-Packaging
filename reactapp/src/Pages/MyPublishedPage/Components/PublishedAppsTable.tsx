@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import AppData from "../../AppsPage/AppData";
 import { useTable, useSortBy } from "react-table";
-import "./table.css";
+import "./publishedTable.css";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
 }
@@ -22,7 +22,7 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
         accessor: "price",
       },
       {
-        Header: "First Published",
+        Header: "First PublishedPage",
         accessor: "publication_date",
         sortType: (a: any, b: any) => {
           let a1 = new Date(a.original.publication_date);

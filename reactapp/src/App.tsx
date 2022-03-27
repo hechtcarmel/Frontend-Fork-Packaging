@@ -16,7 +16,7 @@ import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
 import DUMMY_APPS from "./Web3Communication/DebugDummies/DummyApps";
 import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
-import Published from "./Pages/MyPublishedPage/Published";
+import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
 
 console.log("Is running on Electron? " + isElectron());
 
@@ -81,7 +81,7 @@ function App() {
           <Route
             path={PagePaths.MyPublishedPagePath}
             element={
-              <Published
+              <PublishedPage
                 publishedApps={publishedApps}
                 setPublishedApps={setPublishedApps}
                 userId={userId}

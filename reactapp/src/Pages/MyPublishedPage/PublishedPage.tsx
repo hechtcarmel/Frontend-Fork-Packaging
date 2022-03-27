@@ -3,14 +3,14 @@ import { IS_ON_ELECTRON } from "../../ElectronCommunication/SharedElectronConsta
 import { PublishedAppsTable } from "./Components/PublishedAppsTable";
 import AppData from "../AppsPage/AppData";
 import { getPublishedApps } from "../../Web3Communication/Web3ReactApi";
-
+import "./PublishedPage.css";
 interface PublishedProps {
   publishedApps: AppData[];
   setPublishedApps: Dispatch<SetStateAction<AppData[]>>;
   userId: string;
 }
 
-function Published({
+function PublishedPage({
   publishedApps,
   setPublishedApps,
   userId,
@@ -19,7 +19,12 @@ function Published({
     setPublishedApps(getPublishedApps(userId));
   }, [userId]);
 
-  return <PublishedAppsTable publishedApps={publishedApps} />;
+  return (
+    <>
+      <h1 id="published-apps-title"> My Published Apps</h1>
+      <PublishedAppsTable publishedApps={publishedApps} />
+    </>
+  );
 }
 
-export default Published;
+export default PublishedPage;
