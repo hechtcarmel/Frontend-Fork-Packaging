@@ -1,7 +1,13 @@
 import React, { useMemo } from "react";
 import AppData from "../../AppsPage/AppData";
-import { useTable, useSortBy, usePagination } from "react-table";
+import {
+  useTable,
+  useSortBy,
+  usePagination,
+  useGlobalFilter,
+} from "react-table";
 import "./publishedTable.css";
+import { GlobalFilter } from "./GlobalFilter";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
 }
@@ -39,6 +45,7 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
 
   const tableInstance = useTable(
     { columns: columns as any, data: data },
+    useGlobalFilter,
     useSortBy,
     usePagination
   );
@@ -54,12 +61,14 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
     canPreviousPage,
     pageOptions,
     state,
+    setGlobalFilter,
   } = tableInstance;
 
-  const { pageIndex } = state;
+  const { pageIndex, globalFilter } = state;
 
   return (
     <>
+      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
