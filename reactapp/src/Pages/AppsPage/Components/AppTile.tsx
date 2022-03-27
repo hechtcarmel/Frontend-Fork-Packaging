@@ -7,7 +7,7 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import no_image_alt from "./app_no_image_alt.jpg";
+import no_image_alt from "../../../Misc/app_no_image_alt.jpg";
 import dummy_car from "../../../Misc/product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
 import AppData from "../AppData";
 import "../../../CSS/appImage.css";
