@@ -14,7 +14,7 @@ import { IS_ON_ELECTRON } from "./ElectronCommunication/SharedElectronConstants"
 import UploadPage from "./Pages/UploadPage/UploadPage";
 import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
-import DUMMY_APPS from "./Pages/AppsPage/DummyApps";
+import DUMMY_APPS from "./Web3Communication/DebugDummies/DummyApps";
 import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
 import Published from "./Pages/MyPublishedPage/Published";
 
@@ -46,6 +46,10 @@ function App() {
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [publishedApps, setPublishedApps] = useState<AppData[]>([]);
+
+  const [userId, setUserId] = useState<string>("");
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -74,7 +78,16 @@ function App() {
           />
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
-          <Route path={PagePaths.MyPublishedPagePath} element={Published} />
+          <Route
+            path={PagePaths.MyPublishedPagePath}
+            element={
+              <Published
+                publishedApps={publishedApps}
+                setPublishedApps={setPublishedApps}
+                userId={userId}
+              />
+            }
+          />
         </Routes>
         {/*Prevents footer to hide content */}
         <div

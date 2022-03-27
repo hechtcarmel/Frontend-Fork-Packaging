@@ -3,7 +3,7 @@ import AppsCatalog from "./Components/AppsCatalog";
 import "../../CSS/AppsCatalogPage.css";
 import AppData from "./AppData";
 import IS_DEBUG from "../../ElectronCommunication/SharedElectronConstants.js";
-import DUMMY_APPS from "./DummyApps";
+import DUMMY_APPS from "../../Web3Communication/DebugDummies/DummyApps";
 import Pagination from "./Components/Pagination";
 import { APPS_PER_PAGE, DEFAULT_EMPTY_APP } from "../../ReactConstants";
 import AppDetailsModal from "./Components/AppDetailsModal";
