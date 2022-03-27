@@ -26,7 +26,7 @@ for (let i = 0; i < 50; i++) {
 
 export const DUMMY_PUBLISHED: AppData[] = [];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 20; i++) {
   DUMMY_PUBLISHED.push({
     id: i,
     creator: `Carmel Hecht`,
