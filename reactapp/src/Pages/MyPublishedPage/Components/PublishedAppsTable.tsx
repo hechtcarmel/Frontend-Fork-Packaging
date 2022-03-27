@@ -6,7 +6,9 @@ import {
   usePagination,
   useGlobalFilter,
 } from "react-table";
-import "./publishedTable.css";
+
+//import "./publishedTable.css";
+import "./tablecss2.css";
 import { GlobalFilter } from "./GlobalFilter";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
@@ -69,7 +71,7 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="published-table">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps}>
@@ -107,13 +109,19 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
             {pageIndex + 1} of {pageOptions.length}
           </strong>{" "}
         </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {" "}
-          Previous{" "}
+        <button
+          onClick={() => previousPage()}
+          className="table-nav-btn"
+          disabled={!canPreviousPage}
+        >
+          {" < "}
         </button>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {" "}
-          Next{" "}
+        <button
+          onClick={() => nextPage()}
+          className="table-nav-btn"
+          disabled={!canNextPage}
+        >
+          {" > "}
         </button>
       </div>
     </>
