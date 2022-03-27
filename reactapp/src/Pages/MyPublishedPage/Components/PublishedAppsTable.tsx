@@ -24,6 +24,13 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
       {
         Header: "First Published",
         accessor: "publication_date",
+        sortType: (a: any, b: any) => {
+          let a1 = new Date(a.original.publication_date);
+          let b1 = new Date(b.original.publication_date);
+          if (a1 < b1) return 1;
+          else if (a1 > b1) return -1;
+          else return 0;
+        },
       },
     ],
     []
