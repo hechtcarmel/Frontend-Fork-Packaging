@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import AppData from "../../AppsPage/AppData";
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
 import "./table.css";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
@@ -30,7 +30,10 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
   );
   const data = useMemo(() => publishedApps, [publishedApps]);
 
-  const tableInstance = useTable({ columns: columns as any, data: data });
+  const tableInstance = useTable(
+    { columns: columns as any, data: data },
+    useSortBy
+  );
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
@@ -40,7 +43,12 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                {column.render("Header")}
+                <span>
+                  {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
+                </span>
+              </th>
             ))}
           </tr>
         ))}
