@@ -10,7 +10,7 @@ import ReactDOM from "react-dom";
 import NavigationBar from "./Pages/Shared/NavigationBar";
 import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
-import { IS_ON_ELECTRON } from "./SharedConstants";
+import { IS_ON_ELECTRON } from "./ElectronCommunication/SharedElectronConstants";
 import UploadPage from "./Pages/UploadPage/UploadPage";
 import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";

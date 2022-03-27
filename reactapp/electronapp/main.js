@@ -1,7 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require("electron");
 require("@electron/remote/main").initialize();
-const { REACT_ADDRESS } = require("../src/SharedConstants");
+const {
+  REACT_ADDRESS,
+} = require("../src/ElectronCommunication/SharedElectronConstants");
 const {
   ElectronMessages,
 } = require("../src/ElectronCommunication/ElectronMessages");

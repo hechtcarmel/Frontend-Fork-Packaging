@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AppsCatalog from "./Components/AppsCatalog";
 import "../../CSS/AppsCatalogPage.css";
 import AppData from "./AppData";
-import IS_DEBUG from "../../SharedConstants.js";
+import IS_DEBUG from "../../ElectronCommunication/SharedElectronConstants.js";
 import DUMMY_APPS from "./DummyApps";
 import Pagination from "./Components/Pagination";
 import { APPS_PER_PAGE, DEFAULT_EMPTY_APP } from "../../ReactConstants";
