@@ -1,4 +1,4 @@
-import dummy_car from "./Pages/AppsPage/product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
+import dummy_car from "./Misc/product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
 import AppData from "./Pages/AppsPage/AppData";
 
 export const PagePaths = {

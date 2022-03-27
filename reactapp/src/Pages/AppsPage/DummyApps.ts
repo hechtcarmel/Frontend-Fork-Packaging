@@ -1,5 +1,5 @@
 import AppData from "./AppData";
-import dummy_car from "./product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
+import dummy_car from "../../Misc/product_img/Audi_R8_2017_189_19_610_52_10_76_48_174_14_AWD_2_2_2dr_nUS.jpg";
 
 const DUMMY_APPS: AppData[] = [];
 for (let i = 0; i < 50; i++) {
