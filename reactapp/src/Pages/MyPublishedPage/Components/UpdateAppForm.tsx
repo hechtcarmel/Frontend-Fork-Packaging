@@ -1,4 +1,10 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { MDBInput, MDBBtn, MDBTextArea, MDBFile } from "mdb-react-ui-kit";
 import "../../../CSS/UploadForm.css";
 import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
@@ -31,14 +37,17 @@ export default function UpdateForm({
     formik.handleChange(e);
   };
 
+  useEffect(() => {}, [currAppData]);
+
   const formik = useFormik<any>({
     validateOnChange: false,
+    enableReinitialize: true,
     validateOnBlur: false,
     initialValues: {
       appFile: "",
-      price: "",
-      description: "",
-      img_url: "",
+      price: currAppData.price.toString(),
+      description: currAppData.description,
+      img_url: currAppData.img_url,
     },
     validationSchema: Yup.object({
       appFile: Yup.mixed().required("File is required"),

@@ -37,7 +37,7 @@ for (let i = 0; i < 20; i++) {
         : i % 3 === 1
         ? dummy_car
         : "",
-    price: i % 5,
+    price: (i % 5) + 1,
     name: `App #${i}`,
     publication_date:
       i % 3 === 0 ? "2.5.2022" : i % 1 === 1 ? "2.4.2078" : "1.1.0000",
