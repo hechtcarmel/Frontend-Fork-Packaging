@@ -44,9 +44,11 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
       {
         Header: "",
         accessor: "action",
-        Cell: ({ value }: any) => (
+        Cell: (value: any) => (
           <div>
-            <button onClick={() => console.log("clicked")}>Update</button>
+            <button onClick={() => updateBtnHandler(value.cell.row.original)}>
+              Update
+            </button>
           </div>
         ),
       },
@@ -77,6 +79,10 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
   } = tableInstance;
 
   const { pageIndex, globalFilter } = state;
+
+  const updateBtnHandler = (rowData: AppData) => {
+    console.log("Row data to update: ", rowData);
+  };
 
   return (
     <>
