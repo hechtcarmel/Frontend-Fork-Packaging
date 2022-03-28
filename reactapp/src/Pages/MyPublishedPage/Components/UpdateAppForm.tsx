@@ -89,7 +89,7 @@ export default function UpdateForm({
         </div>
         <div className={"row g-2"}>
           <div className="row g-2">
-            <div className="col-md-2">
+            <div className="col-md-4">
               <MDBInput
                 value={formik.values.price}
                 name="price"
@@ -104,7 +104,7 @@ export default function UpdateForm({
           </div>
         </div>
         <div className="row g-2">
-          <div className="col-md-6">
+          <div className="col-md-50">
             <MDBTextArea
               value={formik.values.description}
               name="description"
@@ -122,7 +122,7 @@ export default function UpdateForm({
           </div>
         </div>
         <div className="row g-1">
-          <div id={"submit-btn-div"} className="col-md-2">
+          <div id={"submit-btn-div"} className="col-md-100">
             <MDBBtn id={"submit-btn"} disabled={isLoading} type="submit">
               Upload New Version
             </MDBBtn>

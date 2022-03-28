@@ -2,11 +2,16 @@
     background-color: red;
 }
 
+#submit-btn{
+    border: 3px solid black;
+    padding: 10px;
+}
+
 #update-form{
-    width: 50%;
+    width: 100%;
     position: relative;
     margin: auto;
-
+    justify-content: left;
 }
 
 .invalid-field-text{
@@ -22,3 +27,4 @@
 #description-input {
     resize: none;
 }
+
