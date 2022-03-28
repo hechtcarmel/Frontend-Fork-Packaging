@@ -33,7 +33,7 @@ function PublishedPage({
   return (
     <>
       <UpdateAppModal
-        app={selectedAppData}
+        appToUpdate={selectedAppData}
         showModal={showModal}
         setShowModal={setShowModal}
         toggleShowModal={toggleShowModal}

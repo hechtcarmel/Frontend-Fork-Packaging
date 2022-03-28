@@ -19,9 +19,10 @@ import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import isElectron from "is-electron";
 import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
+import UpdateAppForm from "./UpdateAppForm";
 
 interface UpdateAppModalProps {
-  app: AppData;
+  appToUpdate: AppData;
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   toggleShowModal: any;
@@ -30,18 +31,19 @@ interface UpdateAppModalProps {
 }
 
 export default function UpdateAppModal({
-  app,
+  appToUpdate,
   showModal,
   setShowModal,
   toggleShowModal,
   isLoading,
   setIsLoading,
 }: UpdateAppModalProps) {
-  const [appToUpdate, setAppToUpdate] = useState<AppData>();
+  const [imgUrl, setImgUrl] = useState<string>();
 
   useEffect(() => {
-    setAppToUpdate(app);
-  }, [app]);
+    setImgUrl(appToUpdate?.img_url);
+    console.log(`App to update was set to ${appToUpdate.name}`);
+  }, [appToUpdate]);
 
   function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -71,15 +73,15 @@ export default function UpdateAppModal({
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>{`Update ${app.name}`}</MDBModalTitle>
+              <MDBModalTitle>{`Update ${appToUpdate.name}`}</MDBModalTitle>
             </MDBModalHeader>
-            <MDBModalBody></MDBModalBody>
-
-            <MDBModalFooter>
-              <SpinnerButton onClick={handleUpdateBtn}>
-                Upload New Version
-              </SpinnerButton>
-            </MDBModalFooter>
+            <MDBModalBody>
+              <UpdateAppForm
+                setIsLoading={setIsLoading}
+                currAppData={appToUpdate}
+                isLoading={isLoading}
+              ></UpdateAppForm>
+            </MDBModalBody>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
@@ -87,4 +89,18 @@ export default function UpdateAppModal({
   );
 }
 /*              <MDBBtn>Purchase</MDBBtn>
+ */
+
+/*
+
+ <MDBCardImage
+                src={imgUrl ? imgUrl : app.img_url ? app.img_url : no_image_alt}
+                position="top"
+                alt="..."
+                className="app-image"
+              />
+              <h4 id="description-paragraph-title">Description:</h4>
+              <p id="description-paragraph" className="card-text">
+                {app.description}
+              </p>
  */

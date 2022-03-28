@@ -1,5 +1,14 @@
 import React, { ChangeEvent, useState } from "react";
-import { MDBInput, MDBBtn, MDBTextArea, MDBFile } from "mdb-react-ui-kit";
+import {
+  MDBInput,
+  MDBBtn,
+  MDBCheckbox,
+  MDBTextArea,
+  MDBValidationItem,
+  MDBInputGroup,
+  MDBValidation,
+  MDBFile,
+} from "mdb-react-ui-kit";
 import "../../../CSS/UploadForm.css";
 import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
 import { useFormik } from "formik";
