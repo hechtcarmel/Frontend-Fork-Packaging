@@ -179,7 +179,9 @@ export default function UploadForm() {
         </div>
         <div className="row g-1">
           <div className="col-md-2">
-            <MDBBtn type="submit">Upload</MDBBtn>
+            <MDBBtn id="submit-btn" type="submit">
+              Upload
+            </MDBBtn>
           </div>
         </div>
       </form>

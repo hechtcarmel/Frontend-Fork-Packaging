@@ -12,6 +12,7 @@ import "./tablecss2.css";
 import { GlobalFilter } from "./GlobalFilter";
 import Button from "react";
 import isElectron from "is-electron";
+import { MDBBtn } from "mdb-react-ui-kit";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
   setSelectedAppData: Dispatch<SetStateAction<AppData>>;
@@ -53,9 +54,12 @@ export function PublishedAppsTable({
         accessor: "action",
         Cell: (value: any) => (
           <div>
-            <button onClick={() => updateBtnHandler(value.cell.row.original)}>
+            <MDBBtn
+              size={"sm"}
+              onClick={() => updateBtnHandler(value.cell.row.original)}
+            >
               Update
-            </button>
+            </MDBBtn>
           </div>
         ),
       },

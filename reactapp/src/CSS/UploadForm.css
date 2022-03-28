@@ -18,3 +18,7 @@
 #description-input {
     resize: none;
 }
+
+#submit-btn:disabled{
+    background-color: red;
+}

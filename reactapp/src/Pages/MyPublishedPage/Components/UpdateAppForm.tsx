@@ -69,22 +69,8 @@ export default function UpdateForm({
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    formik.submitForm();
-  };
 
-  const handleUpdateBtn = async (e: SubmitEvent) => {
-    //TODO: Add error handling.
-    setIsLoading(true);
     formik.submitForm();
-
-    return fetch("https://reqres.in/api/users/1")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
-      .catch((err) => {
-        /*TODO*/
-      })
-      .finally(() => setIsLoading(false));
   };
 
   return (
