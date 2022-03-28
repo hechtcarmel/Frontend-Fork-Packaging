@@ -10,6 +10,7 @@ import {
 //import "./publishedTable.css";
 import "./tablecss2.css";
 import { GlobalFilter } from "./GlobalFilter";
+import Button from "react";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
 }
@@ -30,7 +31,7 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
         accessor: "price",
       },
       {
-        Header: "First PublishedPage",
+        Header: "Publication Date",
         accessor: "publication_date",
         sortType: (a: any, b: any) => {
           let a1 = new Date(a.original.publication_date);
@@ -39,6 +40,15 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
           else if (a1 > b1) return -1;
           else return 0;
         },
+      },
+      {
+        Header: "",
+        accessor: "action",
+        Cell: ({ value }: any) => (
+          <div>
+            <button onClick={() => console.log("clicked")}>Update</button>
+          </div>
+        ),
       },
     ],
     []
@@ -73,18 +83,25 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()} className="published-table">
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
-                  </span>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup) => {
+            const { key } = headerGroup.getHeaderGroupProps();
+            return (
+              <tr key={key} {...headerGroup.getHeaderGroupProps}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? "🔽"
+                          : "🔼"
+                        : ""}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            );
+          })}
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
