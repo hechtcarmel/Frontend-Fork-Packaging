@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { Dispatch, SetStateAction, useMemo } from "react";
 import AppData from "../../AppsPage/AppData";
 import {
   useTable,
@@ -11,11 +11,18 @@ import {
 import "./tablecss2.css";
 import { GlobalFilter } from "./GlobalFilter";
 import Button from "react";
+import isElectron from "is-electron";
 interface PublishedAppsTableProps {
   publishedApps: AppData[];
+  setSelectedAppData: Dispatch<SetStateAction<AppData>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
+export function PublishedAppsTable({
+  publishedApps,
+  setSelectedAppData,
+  setShowModal,
+}: PublishedAppsTableProps) {
   const columns = useMemo(
     () => [
       {
@@ -81,7 +88,11 @@ export function PublishedAppsTable({ publishedApps }: PublishedAppsTableProps) {
   const { pageIndex, globalFilter } = state;
 
   const updateBtnHandler = (rowData: AppData) => {
-    console.log("Row data to update: ", rowData);
+    if (isElectron() || true) {
+      console.log("Row data to update: ", rowData);
+      setSelectedAppData(rowData);
+      setShowModal(true);
+    }
   };
 
   return (

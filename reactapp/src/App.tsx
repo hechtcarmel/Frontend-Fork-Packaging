@@ -85,6 +85,8 @@ function App() {
                 publishedApps={publishedApps}
                 setPublishedApps={setPublishedApps}
                 userId={userId}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
             }
           />
