@@ -27,4 +27,8 @@
 #description-input {
     resize: none;
 }
-
+#update-form-app-img{
+    height: 200px;
+    max-width:350px;
+    width: auto;
+}

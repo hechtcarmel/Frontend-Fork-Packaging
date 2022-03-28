@@ -14,7 +14,7 @@ import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import "./UpdateAppForm.css";
-
+import FallbackImg from "./fix-invalid-image-error.png";
 interface UpdateFormProps {
   currAppData: AppData;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -37,7 +37,9 @@ export default function UpdateForm({
     formik.handleChange(e);
   };
 
-  useEffect(() => {}, [currAppData]);
+  useEffect(() => {
+    setUpdatedImgUrl(currAppData.img_url);
+  }, [currAppData]);
 
   const formik = useFormik<any>({
     validateOnChange: false,
@@ -59,6 +61,13 @@ export default function UpdateForm({
         .trim()
         .max(250, "Must be at most 250 characters long!")
         .required("Description cannot be empty!"),
+      img_url: Yup.string()
+        .required("Must have an image!")
+        .matches(
+          /(https?:\/\/.*\.(?:png|jpg))/i,
+          "Must be a url of a png/jpg file!"
+        )
+        .url("Must be a url!"),
     }),
     onSubmit: (values) => {
       console.log("Update form submitted with values: ", values);
@@ -111,6 +120,30 @@ export default function UpdateForm({
               ) : null}
             </div>
           </div>
+        </div>
+        <div className="col-md-6">
+          <MDBInput
+            value={formik.values.img_url}
+            name="img_url"
+            onChange={onImgUrlChange}
+            id="image-url-input"
+            label="Image URL"
+          />
+          {formik.errors.img_url ? (
+            <p className={"invalid-field-text"}>{formik.errors.img_url}</p>
+          ) : null}
+        </div>
+        <div className={"col-md-2"}>
+          <img
+            src={updatedImgUrl}
+            className={"app-image"}
+            alt={""}
+            id={"update-form-app-img"}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = FallbackImg;
+            }}
+          />
         </div>
         <div className="row g-2">
           <div className="col-md-50">

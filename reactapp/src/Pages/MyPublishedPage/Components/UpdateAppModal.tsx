@@ -70,7 +70,7 @@ export default function UpdateAppModal({
         tabIndex={-1}
         staticBackdrop={isLoading}
       >
-        <MDBModalDialog centered>
+        <MDBModalDialog centered size={"lg"}>
           <MDBModalContent>
             <MDBModalHeader>
               <MDBModalTitle>{`Update ${appToUpdate.name}`}</MDBModalTitle>
