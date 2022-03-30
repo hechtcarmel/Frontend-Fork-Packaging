@@ -47,6 +47,7 @@ function App() {
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [publishedApps, setPublishedApps] = useState<AppData[]>([]);
+  const [ownedApps, setOwnedApps] = useState<AppData[]>([]);
 
   const [userId, setUserId] = useState<string>("");
 
@@ -74,7 +75,15 @@ function App() {
           />
           <Route
             path={PagePaths.PurchasesPagePath}
-            element={<PurchasesPage />}
+            element={
+              <PurchasesPage
+                setIsLoading={setIsLoading}
+                isLoading={isLoading}
+                userId={userId}
+                ownedApps={ownedApps}
+                setOwnedApps={setOwnedApps}
+              />
+            }
           />
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />

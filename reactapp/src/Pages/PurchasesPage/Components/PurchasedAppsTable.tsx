@@ -7,46 +7,54 @@ import {
   useGlobalFilter,
 } from "react-table";
 
-//import "./publishedTable.css";
-import "../../../CSS/PublishedTable.css";
+import "../../../CSS/PurchasedTable.css";
 import { GlobalFilter } from "./GlobalFilter";
 import Button from "react";
 import isElectron from "is-electron";
 import { MDBBtn } from "mdb-react-ui-kit";
-interface PublishedAppsTableProps {
-  publishedApps: AppData[];
+import FallbackImg from "../../../Misc/fix-invalid-image-error.png";
+interface purchasedAppsTableProps {
+  ownedApps: AppData[];
   setSelectedAppData: Dispatch<SetStateAction<AppData>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export function PublishedAppsTable({
-  publishedApps,
+export function PurchasedAppsTable({
+  ownedApps,
   setSelectedAppData,
   setShowModal,
-}: PublishedAppsTableProps) {
+}: purchasedAppsTableProps) {
   const columns = useMemo(
     () => [
       {
-        Header: "App",
+        Header: "",
+        accessor: "img_url",
+        Cell: (value: any) => {
+          return (
+            <div>
+              <img
+                src={value.value}
+                className={"my-purchases-app-image"}
+                alt={""}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = FallbackImg;
+                }}
+              />
+            </div>
+          );
+        },
+      },
+      {
+        Header: "",
         accessor: "name",
       },
+
       {
-        Header: "Rating",
-        accessor: "rating",
-      },
-      {
-        Header: "Price",
-        accessor: "price",
-      },
-      {
-        Header: "Publication Date",
-        accessor: "publication_date",
-        sortType: (a: any, b: any) => {
-          let a1 = new Date(a.original.publication_date);
-          let b1 = new Date(b.original.publication_date);
-          if (a1 < b1) return 1;
-          else if (a1 > b1) return -1;
-          else return 0;
+        Header: "",
+        accessor: "description",
+        Cell: (value: any) => {
+          return value.value;
         },
       },
       {
@@ -56,11 +64,17 @@ export function PublishedAppsTable({
           <div>
             <MDBBtn
               size={"sm"}
-              onClick={() => updateBtnHandler(value.cell.row.original)}
+              onClick={() => downloadBtnHandler(value.cell.row.original)}
             >
               {isElectron()
-                ? ["Update"]
-                : ["Download", <br />, "Desktop Client", <br />, " To Update"]}
+                ? ["Download"]
+                : [
+                    "Download",
+                    <br />,
+                    "Desktop Client",
+                    <br />,
+                    " To Download",
+                  ]}
             </MDBBtn>
           </div>
         ),
@@ -68,7 +82,7 @@ export function PublishedAppsTable({
     ],
     []
   );
-  const data = useMemo(() => publishedApps, [publishedApps]);
+  const data = useMemo(() => ownedApps, [ownedApps]);
 
   const tableInstance = useTable(
     { columns: columns as any, data: data },
@@ -93,9 +107,9 @@ export function PublishedAppsTable({
 
   const { pageIndex, globalFilter } = state;
 
-  const updateBtnHandler = (rowData: AppData) => {
-    if (isElectron()) {
-      console.log("Row data to update: ", rowData);
+  const downloadBtnHandler = (rowData: AppData) => {
+    if (isElectron() || true) {
+      console.log("Row data to download: ", rowData);
       setSelectedAppData(rowData);
       setShowModal(true);
     } else {
@@ -106,7 +120,7 @@ export function PublishedAppsTable({
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-      <table {...getTableProps()} className="published-table">
+      <table {...getTableProps()} className="purchased-table">
         <thead>
           {headerGroups.map((headerGroup) => {
             const { key } = headerGroup.getHeaderGroupProps();

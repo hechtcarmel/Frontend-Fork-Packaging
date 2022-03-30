@@ -1,7 +1,11 @@
+.my-purchases-app-image{
+    max-width: 18em;
+    height: auto;
+}
 
 
-.published-table {
-    border-collapse: collapse;
+.purchased-table {
+    border-collapse: separate;
 
     margin: 25px 0;
     font-size: 0.9em;
@@ -11,9 +15,12 @@
     margin-right:auto;
     margin-left: auto;
 
+    max-width: 70vw;
+
+
 
 }
-.published-table thead tr {
+.purchased-table thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
@@ -21,8 +28,8 @@
 
 }
 
-.published-table th,
-.published-table td {
+.purchased-table th,
+.purchased-table td {
     padding: 12px 15px;
 
 
@@ -30,18 +37,19 @@
 
 
 
-.published-table tbody tr {
+.purchased-table tbody tr {
     border-bottom: 1px solid #dddddd;
 
 
 
 }
 
-.published-table tbody tr:nth-of-type(even) {
+.purchased-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+
 }
 
-.published-table tbody tr:last-of-type {
+.purchased-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 

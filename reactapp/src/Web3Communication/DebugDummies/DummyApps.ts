@@ -48,4 +48,29 @@ for (let i = 0; i < 20; i++) {
     myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
   });
 }
+
+export const DUMMY_OWNED: AppData[] = [];
+
+for (let i = 0; i < 20; i++) {
+  DUMMY_OWNED.push({
+    id: i,
+    creator: `Carmel Hecht`,
+    description: `Cool Description #${i} Cool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool Description3`,
+    img_url:
+      i % 3 === 0
+        ? "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"
+        : i % 3 === 1
+        ? dummy_car
+        : "",
+    price: (i % 5) + 1,
+    name: `App #${i}`,
+    publication_date:
+      i % 3 === 0 ? "2.5.2022" : i % 1 === 1 ? "2.4.2078" : "1.1.0000",
+    rating: i % 6,
+    SHA: "256da46546fd",
+    version: i % 6,
+    owned: i % 2 === 0 ? true : false,
+    myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
+  });
+}
 export default DUMMY_APPS;
