@@ -38,12 +38,14 @@ function AppTile({
         marginTop: "20px",
       }}
     >
-      <MDBCardImage
-        src={appData.img_url ? appData.img_url : no_image_alt}
-        position="top"
-        alt="..."
-        className={"app-image"}
-      />
+      <div className={"card_image_div"}>
+        <MDBCardImage
+          src={appData.img_url ? appData.img_url : no_image_alt}
+          position="top"
+          alt="..."
+          className={"app-image"}
+        />
+      </div>
       <MDBCardBody
         style={{
           height: "140px",

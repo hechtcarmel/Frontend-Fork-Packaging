@@ -13,7 +13,6 @@ import {
 } from "mdb-react-ui-kit";
 import appData from "../AppData";
 import no_image_alt from "../../../Misc/app_no_image_alt.jpg";
-import "../../../CSS/AppDetailsModal.css";
 import { Rating } from "react-simple-star-rating";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import isElectron from "is-electron";
@@ -114,7 +113,6 @@ export default function AppDetailsModal({
             <MDBModalBody>
               <MDBCardImage
                 src={app.img_url ? app.img_url : no_image_alt}
-                position="top"
                 alt="..."
                 className="app-image"
               />
