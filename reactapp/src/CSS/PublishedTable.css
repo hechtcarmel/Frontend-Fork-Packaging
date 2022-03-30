@@ -1,5 +1,15 @@
+table {
+
+}
+
+td {
+
+}
+
+
 .published-table {
     border-collapse: collapse;
+
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
@@ -7,20 +17,32 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     margin-right:auto;
     margin-left: auto;
+
+
+
 }
 .published-table thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
+
+
 }
 
 .published-table th,
 .published-table td {
     padding: 12px 15px;
+
+
 }
+
+
 
 .published-table tbody tr {
     border-bottom: 1px solid #dddddd;
+
+
+
 }
 
 .published-table tbody tr:nth-of-type(even) {
@@ -50,4 +72,8 @@
 .table-nav-btn:disabled {
     background-color: grey;
     color: white;
+}
+
+.global-filter{
+    margin-top: 20px
 }

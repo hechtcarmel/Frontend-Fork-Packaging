@@ -13,8 +13,8 @@ import * as Yup from "yup";
 import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
-import "./UpdateAppForm.css";
-import FallbackImg from "./fix-invalid-image-error.png";
+import "../../../CSS/UpdateAppForm.css";
+import FallbackImg from "../../../Misc/fix-invalid-image-error.png";
 interface UpdateFormProps {
   currAppData: AppData;
   setIsLoading: Dispatch<SetStateAction<boolean>>;

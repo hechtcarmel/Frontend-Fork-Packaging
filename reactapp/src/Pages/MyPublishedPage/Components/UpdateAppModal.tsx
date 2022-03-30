@@ -12,11 +12,7 @@ import {
   MDBCardText,
 } from "mdb-react-ui-kit";
 
-import no_image_alt from "../../../Misc/app_no_image_alt.jpg";
 import "../../../CSS/AppDetailsModal.css";
-import { Rating } from "react-simple-star-rating";
-import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
-import isElectron from "is-electron";
 import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
 import UpdateAppForm from "./UpdateAppForm";

@@ -8,7 +8,7 @@ import {
 } from "react-table";
 
 //import "./publishedTable.css";
-import "./tablecss2.css";
+import "../../../CSS/PublishedTable.css";
 import { GlobalFilter } from "./GlobalFilter";
 import Button from "react";
 import isElectron from "is-electron";

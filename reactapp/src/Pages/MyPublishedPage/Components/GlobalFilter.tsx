@@ -1,5 +1,5 @@
 import React from "react";
-import "./publishedTable.css";
+import "../../../CSS/PublishedTable.css";
 interface GlobalFilterProps {
   filter: string;
   setFilter: any;

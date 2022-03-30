@@ -3,7 +3,7 @@ import { IS_ON_ELECTRON } from "../../ElectronCommunication/SharedElectronConsta
 import { PublishedAppsTable } from "./Components/PublishedAppsTable";
 import AppData from "../AppsPage/AppData";
 import { getPublishedApps } from "../../Web3Communication/Web3ReactApi";
-import "./PublishedPage.css";
+import "../../CSS/PublishedPage.css";
 import UpdateAppModal from "./Components/UpdateAppModal";
 import { DEFAULT_EMPTY_APP } from "../../ReactConstants";
 interface PublishedProps {
