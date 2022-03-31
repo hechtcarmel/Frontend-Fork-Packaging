@@ -14,7 +14,7 @@ import AppData from "../AppsPage/AppData";
 import {
   getDisplayedApps,
   getDisplayedAppsObj,
-} from "../AppsPage/AppsCatalogPage";
+} from "../../Web3Communication/Web3ReactApi";
 
 interface NavigationBarProps {
   setDisplayedApps: Dispatch<SetStateAction<Array<AppData>>>;

@@ -2,45 +2,13 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AppsCatalog from "./Components/AppsCatalog";
 import "../../CSS/AppsCatalogPage.css";
 import AppData from "./AppData";
-import IS_DEBUG from "../../ElectronCommunication/SharedElectronConstants.js";
-import DUMMY_APPS from "../../Web3Communication/DebugDummies/DummyApps";
 import Pagination from "./Components/Pagination";
 import { APPS_PER_PAGE, DEFAULT_EMPTY_APP } from "../../ReactConstants";
 import AppDetailsModal from "./Components/AppDetailsModal";
-
-export interface getDisplayedAppsObj {
-  displayedApps: Array<AppData>;
-  pageCount: number;
-}
-
-export const getDisplayedApps = (
-  pageNum: number,
-  itemsPerPage: number,
-  filter?: string
-): getDisplayedAppsObj => {
-  //request to fetch apps [(pageNum*itemsPerPage + 1), (pageNum*itemsPerPage + itemsPerPage) )
-
-  if (IS_DEBUG) {
-    let appsPool = DUMMY_APPS;
-    if (filter) {
-      appsPool = appsPool.filter((app) => app.name?.includes(filter as string));
-    }
-
-    let res = appsPool.slice(
-      pageNum * itemsPerPage,
-      pageNum * itemsPerPage + itemsPerPage
-    );
-    console.log(
-      `getDisplayedApps(pageNum: ${pageNum}, itemsPerPage:${itemsPerPage}`,
-      `filter: ${filter}`,
-      res
-    );
-    let numberOfPages = Math.ceil(appsPool.length / itemsPerPage);
-    return { displayedApps: res, pageCount: numberOfPages };
-  } else {
-    return { displayedApps: [], pageCount: 0 };
-  }
-};
+import {
+  getDisplayedApps,
+  getDisplayedAppsObj,
+} from "../../Web3Communication/Web3ReactApi";
 
 interface AppsCatalogPageProps {
   displayedApps: Array<AppData>;
