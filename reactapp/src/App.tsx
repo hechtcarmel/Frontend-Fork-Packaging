@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PurchasesPage from "./Pages/PurchasesPage/PurchasesPage";
 import AppsCatalogPage from "./Pages/AppsPage/AppsCatalogPage";
 import "./App.css";
@@ -17,7 +17,10 @@ import AppData from "./Pages/AppsPage/AppData";
 import DUMMY_APPS from "./Web3Communication/DebugDummies/DummyApps";
 import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
 import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
+import { toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 console.log("Is running on Electron? " + isElectron());
 
 const handleDemoClick = () => {

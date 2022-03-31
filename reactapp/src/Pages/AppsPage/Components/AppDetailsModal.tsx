@@ -17,6 +17,7 @@ import { Rating } from "react-simple-star-rating";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import isElectron from "is-electron";
 import "../../../CSS/appImage.css";
+import { toast } from "react-toastify";
 
 interface AppDetailsModalProps {
   app: appData;
@@ -76,13 +77,21 @@ export default function AppDetailsModal({
       }
     } else {
       setIsLoading(true);
+      toast("Purchasing...", { autoClose: false });
       return fetch("https://reqres.in/api/users/1")
         .then((response) => response.json())
         .then((data) => console.log(data))
         .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
         .then(() => setAppOwned(true))
+        .then(() => {
+          toast.dismiss();
+          toast("Success!");
+        })
+
         .catch((err) => {
           /*TODO*/
+          toast.dismiss();
+          toast("Error...");
         })
         .finally(() => setIsLoading(false));
     }
