@@ -26,6 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 //import Web3Test from "./Web3Communication/Web3Modal2";
 import { Web3Test2 } from "./Web3Communication/Web3Modal3";
 import Web3 from "web3";
+import { Web3Demo1 } from "./Pages/Web3Demos/Web3Demo";
 toast.configure();
 
 console.log("Is running on Electron? " + isElectron());
@@ -65,11 +66,23 @@ function App() {
 
   const [userId, setUserId] = useState<string>("");
 
-  const web3 = new Web3();
+  const [provider, setProvider] = useState();
+  const [web3, setWeb3] = useState(new Web3());
+  const changeProvider = (new_provider: any) => {
+    console.log("Provider has changed from ", provider, "to ", new_provider);
+
+    web3.eth.getAccounts().then((accounts: string[]) => {
+      console.log("accounts: ", accounts);
+      console.log("accounts[0]: ", accounts[0]);
+    });
+    console.log("got here");
+    setProvider(provider);
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Web3Test2 web3={web3} />
+        <Web3Test2 web3={web3} changeProvider={changeProvider} />
         <button
           onClick={() => {
             console.log(web3);
@@ -77,6 +90,21 @@ function App() {
         >
           {" "}
           Print Btn
+        </button>
+        <button
+          onClick={() => {
+            web3.setProvider("ws://localhost:7545");
+            // @ts-ignore
+            //web3.currentProvider();
+            // @ts-ignore
+            changeProvider(web3.currentProvider);
+            web3.eth
+              .getBalance("0x24Eb8E8e144E14AB7B3071B5312cc38ED01F6C52")
+              .then(console.log);
+          }}
+        >
+          {" "}
+          Connect Ganache{" "}
         </button>
         <SideNav />
         <NavigationBar
@@ -111,6 +139,11 @@ function App() {
           />
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
+          <Route
+            path={"/web3demo1"}
+            element={<Web3Demo1 web3={web3} changeProvider={changeProvider} />}
+          />
+
           <Route
             path={PagePaths.MyPublishedPagePath}
             element={
