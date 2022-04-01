@@ -16,11 +16,17 @@ import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
 import DUMMY_APPS from "./Web3Communication/DebugDummies/DummyApps";
 import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
+//import Web3Test from "./Web3Communication/Web3Modal2";
 import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
 import { toast } from "react-toastify";
-
+//import { web3Modal } from "./Web3Communication/Web3Modal4";
 import "react-toastify/dist/ReactToastify.css";
+//import { Web3Test2 } from "./Web3Communication/Web3Modal3";
+//import { Web3Test4 } from "./Web3Communication/Web3Modal4";
+//import Web3Test from "./Web3Communication/Web3Modal2";
+import { Web3Test2 } from "./Web3Communication/Web3Modal3";
 toast.configure();
+
 console.log("Is running on Electron? " + isElectron());
 
 const handleDemoClick = () => {
@@ -45,6 +51,10 @@ const handleDemoClickAsync = () => {
   console.log("button clicked");
 };
 
+//const provider = await web3Modal.connect()
+//let web3 = new Web3();
+//web3.setProvider(new web3.providers.H());
+
 function App() {
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
@@ -57,6 +67,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Web3Test2 />
         <SideNav />
         <NavigationBar
           setNumberOfPages={setNumberOfPages}
