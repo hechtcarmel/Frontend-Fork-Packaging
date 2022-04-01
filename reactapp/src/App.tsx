@@ -25,6 +25,7 @@ import "react-toastify/dist/ReactToastify.css";
 //import { Web3Test4 } from "./Web3Communication/Web3Modal4";
 //import Web3Test from "./Web3Communication/Web3Modal2";
 import { Web3Test2 } from "./Web3Communication/Web3Modal3";
+import Web3 from "web3";
 toast.configure();
 
 console.log("Is running on Electron? " + isElectron());
@@ -64,10 +65,19 @@ function App() {
 
   const [userId, setUserId] = useState<string>("");
 
+  const web3 = new Web3();
   return (
     <div className="App">
       <BrowserRouter>
-        <Web3Test2 />
+        <Web3Test2 web3={web3} />
+        <button
+          onClick={() => {
+            console.log(web3);
+          }}
+        >
+          {" "}
+          Print Btn
+        </button>
         <SideNav />
         <NavigationBar
           setNumberOfPages={setNumberOfPages}

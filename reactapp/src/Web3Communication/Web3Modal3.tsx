@@ -11,7 +11,7 @@ const providerOptions = {
   },
 };
 
-async function connectwallet() {
+async function connectwallet(web3: Web3) {
   try {
     const web3Modal = new Web3Modal({
       network: "rinkeby",
@@ -19,18 +19,22 @@ async function connectwallet() {
       cacheProvider: false,
       providerOptions,
     });
-    web3Modal.clearCachedProvider();
+    //web3Modal.clearCachedProvider();
 
     var provider = await web3Modal.connect();
-    var web3 = new Web3(provider);
-
+    //web3 = new Web3(provider);
+    web3.setProvider(provider);
     console.log("provider:", provider);
     console.log("web3: ", web3);
+    return web3;
   } catch (error) {
     console.log("connectwallet() error: ", error);
   }
 }
 
-export function Web3Test2() {
-  return <button onClick={connectwallet}>Connect 2</button>;
+interface Web3Test2Props {
+  web3: Web3;
+}
+export function Web3Test2({ web3 }: Web3Test2Props) {
+  return <button onClick={() => connectwallet(web3)}>Connect 2</button>;
 }
