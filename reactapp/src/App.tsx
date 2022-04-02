@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import isElectron from "is-electron";
 import { ElectronMessages } from "./ElectronCommunication/ElectronMessages";
-import ReactDOM from "react-dom";
 import NavigationBar from "./Pages/Shared/NavigationBar";
 import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
@@ -14,19 +13,12 @@ import { IS_ON_ELECTRON } from "./ElectronCommunication/SharedElectronConstants"
 import UploadPage from "./Pages/UploadPage/UploadPage";
 import { PagePaths } from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
-import DUMMY_APPS from "./Web3Communication/DebugDummies/DummyApps";
-import AppDetailsModal from "./Pages/AppsPage/Components/AppDetailsModal";
-//import Web3Test from "./Web3Communication/Web3Modal2";
 import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
 import { toast } from "react-toastify";
-//import { web3Modal } from "./Web3Communication/Web3Modal4";
 import "react-toastify/dist/ReactToastify.css";
-//import { Web3Test2 } from "./Web3Communication/Web3Modal3";
-//import { Web3Test4 } from "./Web3Communication/Web3Modal4";
-//import Web3Test from "./Web3Communication/Web3Modal2";
-import { Web3Test2 } from "./Web3Communication/Web3Modal3";
+
 import Web3 from "web3";
-import { Web3Demo1 } from "./Pages/Web3Demos/Web3Demo";
+import {Web3TestPage} from "./Web3Communication/Web3TestPage";
 toast.configure();
 
 console.log("Is running on Electron? " + isElectron());
@@ -82,30 +74,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Web3Test2 web3={web3} changeProvider={changeProvider} />
-        <button
-          onClick={() => {
-            console.log(web3);
-          }}
-        >
-          {" "}
-          Print Btn
-        </button>
-        <button
-          onClick={() => {
-            web3.setProvider("ws://localhost:7545");
-            // @ts-ignore
-            //web3.currentProvider();
-            // @ts-ignore
-            changeProvider(web3.currentProvider);
-            web3.eth
-              .getBalance("0x24Eb8E8e144E14AB7B3071B5312cc38ED01F6C52")
-              .then(console.log);
-          }}
-        >
-          {" "}
-          Connect Ganache{" "}
-        </button>
+        <Web3TestPage />
         <SideNav />
         <NavigationBar
           setNumberOfPages={setNumberOfPages}
@@ -140,8 +109,8 @@ function App() {
           <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
           <Route
-            path={"/web3demo1"}
-            element={<Web3Demo1 web3={web3} changeProvider={changeProvider} />}
+            path={"/web3test"}
+            element={<Web3TestPage />}
           />
 
           <Route
