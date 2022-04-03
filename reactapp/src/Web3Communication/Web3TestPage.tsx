@@ -4,7 +4,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { connectWalletWithModal } from "./Web3Init";
 import {
   helloWorldABI,
-  HELLO_WORLD_ADRESS,
+  HELLO_WORLD_ADDRESS,
 } from "./Contracts/helloworldContract";
 import { getCurrAccount, createContract } from "./Web3Utils";
 const providerOptions = {
@@ -29,7 +29,7 @@ export function Web3TestPage() {
         onClick={async () => {
           let contract = await createContract(
             helloWorldABI,
-            HELLO_WORLD_ADRESS
+            HELLO_WORLD_ADDRESS
           );
           let res = contract.methods
             .message()
@@ -48,13 +48,13 @@ export function Web3TestPage() {
         onClick={async () => {
           let contract = await createContract(
             helloWorldABI,
-            HELLO_WORLD_ADRESS
+            HELLO_WORLD_ADDRESS
           );
 
           let from = await getCurrAccount();
           console.log("from: ", from);
           contract.methods
-            .setMessage("def")
+            .setMessage("abra")
             .send({ from: from })
             .then((res: any) => {
               console.log("HelloWorld Contract Value was set.");

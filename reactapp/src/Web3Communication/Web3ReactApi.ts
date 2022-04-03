@@ -1,9 +1,14 @@
-import IS_DEBUG from "../ElectronCommunication/SharedElectronConstants";
+import { IS_DEBUG } from "../ElectronCommunication/SharedElectronConstants";
 import DUMMY_APPS, {
   DUMMY_OWNED,
   DUMMY_PUBLISHED,
 } from "./DebugDummies/DummyApps";
 import AppData from "../Pages/AppsPage/AppData";
+import { createContract } from "./Web3Utils";
+import {
+  DAPPSTORE_ABI,
+  DAPPSTORE_CONTRACT_ADDRESS,
+} from "./Contracts/dAppContract";
 
 export function getPublishedApps(userId: string) {
   if (IS_DEBUG) {
@@ -51,7 +56,26 @@ export const getDisplayedApps = (
     let numberOfPages = Math.ceil(appsPool.length / itemsPerPage);
     return { displayedApps: res, pageCount: numberOfPages };
   } else {
-    //Web3
+    tmp();
     return { displayedApps: [], pageCount: 0 };
   }
+};
+
+const tmp = async () => {
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+  let res = await contract.methods
+    .getApps(1, 2)
+    .call()
+    .then((res: any) => {
+      console.log("tmp returned = ", res);
+      return res;
+    })
+    .catch((error: any) => {
+      console.log("ERROR in getContractValue", error);
+      return "error";
+    });
+  return res;
 };
