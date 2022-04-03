@@ -32,5 +32,6 @@ export async function connectWalletWithModal(net = "rinkeby") {
     console.log("web3: ", web3);
   } catch (error) {
     console.log("connectWalletWithModal() error: ", error);
+    throw error;
   }
 }

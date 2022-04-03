@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PurchasesPage from "./Pages/PurchasesPage/PurchasesPage";
 import AppsCatalogPage from "./Pages/AppsPage/AppsCatalogPage";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import isElectron from "is-electron";
 import { ElectronMessages } from "./ElectronCommunication/ElectronMessages";
@@ -16,9 +16,11 @@ import AppData from "./Pages/AppsPage/AppData";
 import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LoginPage } from "./Pages/LoginPage/LoginPage";
+import { LoginModal } from "./Pages/LoginPage/LoginModal";
 
 import Web3 from "web3";
-import {Web3TestPage} from "./Web3Communication/Web3TestPage";
+import { Web3TestPage } from "./Web3Communication/Web3TestPage";
 toast.configure();
 
 console.log("Is running on Electron? " + isElectron());
@@ -48,14 +50,14 @@ const handleDemoClickAsync = () => {
 //const provider = await web3Modal.connect()
 //let web3 = new Web3();
 //web3.setProvider(new web3.providers.H());
-
+//
 function App() {
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [publishedApps, setPublishedApps] = useState<AppData[]>([]);
   const [ownedApps, setOwnedApps] = useState<AppData[]>([]);
-
+  const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
 
   const [provider, setProvider] = useState();
@@ -74,6 +76,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <LoginModal setIsWalletConnected={setIsWalletConnected} />
         <Web3TestPage />
         <SideNav />
         <NavigationBar
@@ -97,22 +100,26 @@ function App() {
           <Route
             path={PagePaths.PurchasesPagePath}
             element={
-              <PurchasesPage
-                setIsLoading={setIsLoading}
-                isLoading={isLoading}
-                userId={userId}
-                ownedApps={ownedApps}
-                setOwnedApps={setOwnedApps}
-              />
+              isWalletConnected ? (
+                <PurchasesPage
+                  setIsLoading={setIsLoading}
+                  isLoading={isLoading}
+                  userId={userId}
+                  ownedApps={ownedApps}
+                  setOwnedApps={setOwnedApps}
+                />
+              ) : (
+                <LoginPage />
+              )
             }
           />
-          <Route path={PagePaths.UploadPagePath} element={<UploadPage />} />
-          <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
           <Route
-            path={"/web3test"}
-            element={<Web3TestPage />}
+            path={PagePaths.UploadPagePath}
+            element={isWalletConnected ? <UploadPage /> : <LoginPage />}
           />
-
+          <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
+          <Route path={"/web3test"} element={<Web3TestPage />} />
+          <Route path={PagePaths.LoginPagePath} element={<LoginPage />} />
           <Route
             path={PagePaths.MyPublishedPagePath}
             element={
