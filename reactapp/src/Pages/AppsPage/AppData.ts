@@ -11,6 +11,7 @@ interface AppData {
   creator: string;
   owned: boolean;
   myRating?: number;
+  magnetLink?: string;
 }
 
 export default AppData;

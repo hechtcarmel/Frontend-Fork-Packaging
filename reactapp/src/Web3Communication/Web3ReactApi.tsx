@@ -4,7 +4,7 @@ import DUMMY_APPS, {
   DUMMY_PUBLISHED,
 } from "./DebugDummies/DummyApps";
 import AppData from "../Pages/AppsPage/AppData";
-import { createContract } from "./Web3Utils";
+import { createContract, getCurrAccount } from "./Web3Utils";
 import {
   DAPPSTORE_ABI,
   DAPPSTORE_CONTRACT_ADDRESS,
@@ -73,6 +73,41 @@ const fetchDummyDisplayedApps = async (
   );
   let numberOfPages = Math.ceil(appsPool.length / itemsPerPage);
   return { displayedApps: appsList, pageCount: numberOfPages };
+};
+
+export const uploadDummyApps = async (num: number) => {
+  //console.log("Dummyapps before upload: ", DUMMY_APPS);
+  for (let i = 0; i < Math.max(num, DUMMY_APPS.length); i++) {
+    await uploadApp(DUMMY_APPS[i]);
+  }
+  console.log("Uploaded All Dummy Apps");
+};
+
+const uploadApp = async (app: AppData) => {
+  console.log("Uploading App: ", app);
+
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+
+  await contract.methods
+    .upload(
+      app.name,
+      app.description,
+      app.SHA,
+      app.img_url,
+      app.magnetLink,
+      app.creator,
+      app.price
+    )
+    .send({ from: await getCurrAccount() })
+    .then(() => {
+      console.log("Finished Uploading");
+    })
+    .catch((err: any) => {
+      console.log("Error uploading contract: ", err);
+    });
 };
 
 const fetchDisplayedApps = async (

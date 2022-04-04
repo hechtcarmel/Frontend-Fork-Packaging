@@ -21,6 +21,7 @@ import { LoginModal } from "./Pages/LoginPage/LoginModal";
 
 import Web3 from "web3";
 import { Web3TestPage } from "./Web3Communication/Web3TestPage";
+import { uploadDummyApps } from "./Web3Communication/Web3ReactApi";
 toast.configure();
 
 console.log("Is running on Electron? " + isElectron());
@@ -56,10 +57,7 @@ function App() {
   const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
 
-  const [provider, setProvider] = useState();
-  const [web3, setWeb3] = useState(new Web3());
   const [currAccount, setCurrAccount] = useState<string>("");
-  //<Web3TestPage />
 
   return (
     <div className="App">
@@ -68,6 +66,13 @@ function App() {
           setIsWalletConnected={setIsWalletConnected}
           setCurrAccount={setCurrAccount}
         />
+        <button
+          onClick={() => {
+            uploadDummyApps(30);
+          }}
+        >
+          Upload 30 Dummy Apps
+        </button>
         <SideNav />
         <NavigationBar
           setNumberOfPages={setNumberOfPages}

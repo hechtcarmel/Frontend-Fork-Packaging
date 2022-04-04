@@ -21,6 +21,7 @@ for (let i = 0; i < 50; i++) {
     version: 1.0,
     owned: i % 2 === 0 ? true : false,
     myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
+    magnetLink: "cool magnet",
   });
 }
 

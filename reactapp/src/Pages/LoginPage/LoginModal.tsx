@@ -17,7 +17,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagePaths } from "../../ReactConstants";
 import isElectron from "is-electron";
-
+import { uploadDummyApps } from "../../Web3Communication/Web3ReactApi";
 interface LoginModalProps {
   setIsWalletConnected: Dispatch<SetStateAction<boolean>>;
   setCurrAccount: Dispatch<SetStateAction<string>>;
@@ -39,7 +39,22 @@ export function LoginModal({
             </MDBModalHeader>
             <MDBModalBody>
               {" "}
-              <button onClick={() => connectWalletWithModal()}>
+              <button
+                onClick={() => {
+                  setShowModal(false);
+                  connectWalletWithModal()
+                    .then(() => {
+                      setIsWalletConnected(true);
+                      web3.eth.getAccounts().then((accounts) => {
+                        setCurrAccount(accounts[0]);
+                      });
+                    })
+                    .catch((error) => {
+                      setShowModal(true);
+                      console.log(error);
+                    });
+                }}
+              >
                 Connect to rinkeby
               </button>
               <button
