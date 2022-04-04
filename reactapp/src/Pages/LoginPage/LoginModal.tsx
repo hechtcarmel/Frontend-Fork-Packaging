@@ -1,5 +1,8 @@
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { connectWalletWithModal, web3 } from "../../Web3Communication/Web3Init";
+import {
+  connectWalletToGanacheNoModal,
+  connectWalletWithModal,
+  web3,
+} from "../../Web3Communication/Web3Init";
 import {
   MDBCardImage,
   MDBModal,
@@ -13,6 +16,7 @@ import {
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PagePaths } from "../../ReactConstants";
+import isElectron from "is-electron";
 
 interface LoginModalProps {
   setIsWalletConnected: Dispatch<SetStateAction<boolean>>;
@@ -41,17 +45,31 @@ export function LoginModal({
               <button
                 onClick={() => {
                   setShowModal(false);
-                  connectWalletWithModal("HTTP://127.0.0.1:7545")
-                    .then(() => {
-                      setIsWalletConnected(true);
-                      web3.eth.getAccounts().then((accounts) => {
-                        setCurrAccount(accounts[0]);
+                  if (!isElectron()) {
+                    connectWalletWithModal("HTTP://127.0.0.1:7545")
+                      .then(() => {
+                        setIsWalletConnected(true);
+                        web3.eth.getAccounts().then((accounts) => {
+                          setCurrAccount(accounts[0]);
+                        });
+                      })
+                      .catch((error) => {
+                        setShowModal(true);
+                        console.log(error);
                       });
-                    })
-                    .catch((error) => {
-                      setShowModal(true);
-                      console.log(error);
-                    });
+                  } else {
+                    connectWalletToGanacheNoModal()
+                      .then(() => {
+                        setIsWalletConnected(true);
+                        web3.eth.getAccounts().then((accounts) => {
+                          setCurrAccount(accounts[0]);
+                        });
+                      })
+                      .catch((error) => {
+                        setShowModal(true);
+                        console.log(error);
+                      });
+                  }
                 }}
               >
                 Connect to ganache

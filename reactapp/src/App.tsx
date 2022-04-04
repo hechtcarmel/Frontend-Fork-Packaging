@@ -47,10 +47,6 @@ const handleDemoClickAsync = () => {
   console.log("button clicked");
 };
 
-//const provider = await web3Modal.connect()
-//let web3 = new Web3();
-//web3.setProvider(new web3.providers.H());
-//
 function App() {
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
