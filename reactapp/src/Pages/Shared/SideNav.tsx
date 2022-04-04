@@ -1,5 +1,6 @@
 import "../../CSS/SideNav.css";
 import { Link, NavLink } from "react-router-dom";
+import { PagePaths } from "../../ReactConstants";
 
 export default function SideNav() {
   return (
@@ -7,7 +8,7 @@ export default function SideNav() {
       <nav className="sidenavbar">
         <ul className="sidenavbar-sidenav">
           <li className="logo">
-            <a href="#" className="sidenav-link">
+            <div className="sidenav-link">
               <span className="link-text logo-text">Menu</span>
               <svg
                 aria-hidden="true"
@@ -32,17 +33,17 @@ export default function SideNav() {
                   ></path>
                 </g>
               </svg>
-            </a>
+            </div>
           </li>
 
           <li className="sidenav-item">
             <NavLink
-              to="/"
+              to={PagePaths.AppsPagePath}
               className={({ isActive }) =>
                 isActive ? "active-navlink" : "inactive-navlink"
               }
             >
-              <a href="#" className="sidenav-link">
+              <div className="sidenav-link">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -67,7 +68,7 @@ export default function SideNav() {
                   </g>
                 </svg>
                 <span className="link-text">Apps </span>
-              </a>
+              </div>
             </NavLink>
           </li>
 
@@ -78,7 +79,7 @@ export default function SideNav() {
                 isActive ? "active-navlink" : "inactive-navlink"
               }
             >
-              <a href="#" className="sidenav-link">
+              <div className="sidenav-link">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -103,7 +104,7 @@ export default function SideNav() {
                   </g>
                 </svg>
                 <span className="link-text">My Purchases</span>
-              </a>
+              </div>
             </NavLink>
           </li>
 
@@ -114,7 +115,7 @@ export default function SideNav() {
                 isActive ? "active-navlink" : "inactive-navlink"
               }
             >
-              <a href="#" className="sidenav-link">
+              <div className="sidenav-link">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -139,7 +140,7 @@ export default function SideNav() {
                   </g>
                 </svg>
                 <span className="link-text">Upload</span>
-              </a>
+              </div>
             </NavLink>
           </li>
 
@@ -150,7 +151,7 @@ export default function SideNav() {
                 isActive ? "active-navlink" : "inactive-navlink"
               }
             >
-              <a href="#" className="sidenav-link">
+              <div className="sidenav-link">
                 <svg
                   aria-hidden="true"
                   focusable="false"
@@ -175,12 +176,12 @@ export default function SideNav() {
                   </g>
                 </svg>
                 <span className="link-text">Published</span>
-              </a>
+              </div>
             </NavLink>
           </li>
 
           <li className="sidenav-item" id="themeButton">
-            <a href="#" className="sidenav-link">
+            <div className="sidenav-link">
               <svg
                 className="theme-icon svg-inline--fa fa-moon-stars fa-w-16 fa-7x"
                 id="lightIcon"
@@ -254,7 +255,7 @@ export default function SideNav() {
                 </g>
               </svg>
               <span className="link-text">Themify</span>
-            </a>
+            </div>
           </li>
         </ul>
       </nav>
@@ -273,33 +274,33 @@ export default function SideNav() {
                 <ul className="sidesidenav-menu">
                     <li className="sidesidenav-item">
                         <a className="sidesidenav-link">
-                            <i className="far fa-smile fa-fw me-3"></i><span>Link 1</span></a
+                            <i className="far fa-smile fa-fw me-3"></i><span>Link 1</span></div
                         >
                     </li>
                     <li className="sidesidenav-item">
                         <a className="sidesidenav-link"
-                        ><i className="fas fa-grin fa-fw me-3"></i><span>Category 1</span></a
+                        ><i className="fas fa-grin fa-fw me-3"></i><span>Category 1</span></div
                         >
                         <ul className="sidesidenav-collapse show">
                             <li className="sidesidenav-item">
-                                <a className="sidesidenav-link">Link 2</a>
+                                <a className="sidesidenav-link">Link 2</div>
                             </li>
                             <li className="sidesidenav-item">
-                                <a className="sidesidenav-link">Link 3</a>
+                                <a className="sidesidenav-link">Link 3</div>
                             </li>
                         </ul>
                     </li>
                     <li className="sidesidenav-item">
                         <a className="sidesidenav-link"
-                        ><i className="fas fa-grin-wink fa-fw me-3"></i><span>Category 2</span></a
+                        ><i className="fas fa-grin-wink fa-fw me-3"></i><span>Category 2</span></div
                         >
                         <ul className="sidesidenav-collapse">
                             <li className="sidesidenav-item">
-                                <a className="sidesidenav-link">Link 4</a>
+                                <a className="sidesidenav-link">Link 4</div>
                             </li>
                             <li className="sidesidenav-item">
                                 <a className="sidesidenav-link"
-                                >Link 5</a
+                                >Link 5</div
                                 >
                             </li>
                         </ul>

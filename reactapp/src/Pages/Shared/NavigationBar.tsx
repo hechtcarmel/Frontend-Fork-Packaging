@@ -19,12 +19,14 @@ import {
 interface NavigationBarProps {
   setDisplayedApps: Dispatch<SetStateAction<Array<AppData>>>;
   setNumberOfPages: Dispatch<SetStateAction<number>>;
+  currAccount: string;
 }
 
-export default function NavigationBar(props: NavigationBarProps) {
-  const setDisplayedApps = props.setDisplayedApps;
-  const setNumberOfPages = props.setNumberOfPages;
-
+export default function NavigationBar({
+  setNumberOfPages,
+  setDisplayedApps,
+  currAccount,
+}: NavigationBarProps) {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -46,27 +48,28 @@ export default function NavigationBar(props: NavigationBarProps) {
   const renderSearchbar = () => {
     if (location.pathname === PagePaths.AppsPagePath) {
       return (
-        <form
-          className="searchArea d-flex input-group w-auto"
-          onSubmit={handleSearchSubmit}
-        >
-          <input
-            type="search"
-            className="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button type="submit">
-            <AiOutlineSearch />
-            <i className="fa fa-search"></i>
-          </button>
-        </form>
+        <>
+          <form
+            className="searchArea d-flex input-group w-auto"
+            onSubmit={handleSearchSubmit}
+          >
+            <input
+              type="search"
+              className="form-control rounded"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit">
+              <AiOutlineSearch />
+              <i className="fa fa-search"></i>
+            </button>
+          </form>
+        </>
       );
     } else {
-      return <></>;
     }
   };
 
@@ -75,6 +78,7 @@ export default function NavigationBar(props: NavigationBarProps) {
       <nav className="navbar sticky-top navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand">dAppstore</a>
+          <h6 id="curr-account-text"> {`Account: ${currAccount}`}</h6>
           {renderSearchbar()}
         </div>
       </nav>

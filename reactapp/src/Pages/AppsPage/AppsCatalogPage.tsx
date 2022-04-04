@@ -33,6 +33,7 @@ function AppsCatalogPage(props: AppsCatalogPageProps) {
   //Display Dummy apps
   useEffect(() => {
     //setDisplayedApps(DUMMY_APPS)
+    console.log("a");
     let res: getDisplayedAppsObj = getDisplayedApps(0, APPS_PER_PAGE);
     setDisplayedApps(res.displayedApps);
     setNumberOfPages(res.pageCount);

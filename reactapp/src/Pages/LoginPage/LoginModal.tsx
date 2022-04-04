@@ -1,5 +1,5 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { connectWalletWithModal } from "../../Web3Communication/Web3Init";
+import { connectWalletWithModal, web3 } from "../../Web3Communication/Web3Init";
 import {
   MDBCardImage,
   MDBModal,
@@ -16,10 +16,15 @@ import { PagePaths } from "../../ReactConstants";
 
 interface LoginModalProps {
   setIsWalletConnected: Dispatch<SetStateAction<boolean>>;
+  setCurrAccount: Dispatch<SetStateAction<string>>;
 }
-export function LoginModal({ setIsWalletConnected }: LoginModalProps) {
+export function LoginModal({
+  setIsWalletConnected,
+  setCurrAccount,
+}: LoginModalProps) {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState<boolean>(true);
+
   return (
     <>
       <MDBModal show={showModal} tabIndex={-1} staticBackdrop={true}>
@@ -39,6 +44,9 @@ export function LoginModal({ setIsWalletConnected }: LoginModalProps) {
                   connectWalletWithModal("HTTP://127.0.0.1:7545")
                     .then(() => {
                       setIsWalletConnected(true);
+                      web3.eth.getAccounts().then((accounts) => {
+                        setCurrAccount(accounts[0]);
+                      });
                     })
                     .catch((error) => {
                       setShowModal(true);

@@ -62,26 +62,21 @@ function App() {
 
   const [provider, setProvider] = useState();
   const [web3, setWeb3] = useState(new Web3());
-  const changeProvider = (new_provider: any) => {
-    console.log("Provider has changed from ", provider, "to ", new_provider);
-
-    web3.eth.getAccounts().then((accounts: string[]) => {
-      console.log("accounts: ", accounts);
-      console.log("accounts[0]: ", accounts[0]);
-    });
-    console.log("got here");
-    setProvider(provider);
-  };
+  const [currAccount, setCurrAccount] = useState<string>("");
+  //<Web3TestPage />
 
   return (
     <div className="App">
       <BrowserRouter>
-        <LoginModal setIsWalletConnected={setIsWalletConnected} />
-        <Web3TestPage />
+        <LoginModal
+          setIsWalletConnected={setIsWalletConnected}
+          setCurrAccount={setCurrAccount}
+        />
         <SideNav />
         <NavigationBar
           setNumberOfPages={setNumberOfPages}
           setDisplayedApps={setDisplayedApps}
+          currAccount={currAccount}
         />
         <Routes>
           <Route

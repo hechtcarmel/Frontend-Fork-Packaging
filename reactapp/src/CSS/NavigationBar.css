@@ -25,3 +25,11 @@ form.searchArea::after {
     clear: both;
     display: table;
 }
+
+#curr-account-text {
+    position:absolute;
+    margin-top: auto;
+    margin-left: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}

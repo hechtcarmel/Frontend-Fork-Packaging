@@ -132,12 +132,12 @@ export default function AppDetailsModal({
             </MDBModalBody>
 
             <MDBModalFooter>
-              <text id="developer-text">
+              <div id="developer-text">
                 <span className="span_underline">Developer</span> :{app.creator}
-              </text>
-              <text id="rating-text">
+              </div>
+              <div id="rating-text">
                 <span className="span_underline">Rating</span> : {app.rating}
-              </text>
+              </div>
 
               <SpinnerButton onClick={handlePurchaseBtn}>
                 {getBtnText()}

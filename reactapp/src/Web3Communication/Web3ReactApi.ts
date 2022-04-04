@@ -66,6 +66,7 @@ const tmp = async () => {
     DAPPSTORE_ABI,
     DAPPSTORE_CONTRACT_ADDRESS
   );
+  console.log("b");
   let res = await contract.methods
     .getApps(1, 2)
     .call()
