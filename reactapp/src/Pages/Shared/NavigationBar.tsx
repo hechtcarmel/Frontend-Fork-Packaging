@@ -30,16 +30,16 @@ export default function NavigationBar({
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const handleSearchSubmit = (event: FormEvent) => {
+  const handleSearchSubmit = async (event: FormEvent) => {
     event.preventDefault(); //Otherwise refreshes the page
 
-    let res: getDisplayedAppsObj = getDisplayedApps(
+    getDisplayedApps(
       0,
       APPS_PER_PAGE,
+      setDisplayedApps,
+      setNumberOfPages,
       searchQuery
     );
-    setDisplayedApps(res.displayedApps);
-    setNumberOfPages(res.pageCount);
 
     //Reset the search query
     //setSearchQuery('')

@@ -17,6 +17,7 @@ interface AppsCatalogPageProps {
   setNumberOfPages: Dispatch<SetStateAction<number>>;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  currAccount: string;
 }
 
 function AppsCatalogPage(props: AppsCatalogPageProps) {
@@ -32,21 +33,17 @@ function AppsCatalogPage(props: AppsCatalogPageProps) {
 
   //Display Dummy apps
   useEffect(() => {
-    //setDisplayedApps(DUMMY_APPS)
-    console.log("a");
-    let res: getDisplayedAppsObj = getDisplayedApps(0, APPS_PER_PAGE);
-    setDisplayedApps(res.displayedApps);
-    setNumberOfPages(res.pageCount);
-  }, []);
+    getDisplayedApps(0, APPS_PER_PAGE, setDisplayedApps, setNumberOfPages);
+  }, [props.currAccount]);
 
   const handlePageClick = (arg: { selected: number }) => {
     console.log("Clicked Page: ", arg.selected);
-    let res: getDisplayedAppsObj = getDisplayedApps(
+    getDisplayedApps(
       arg.selected,
-      APPS_PER_PAGE
+      APPS_PER_PAGE,
+      setDisplayedApps,
+      setNumberOfPages
     );
-    setDisplayedApps(res.displayedApps);
-    setNumberOfPages(res.pageCount);
   };
 
   return (

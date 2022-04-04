@@ -89,6 +89,7 @@ function App() {
                 setDisplayedApps={setDisplayedApps}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                currAccount={currAccount}
               />
             }
           />

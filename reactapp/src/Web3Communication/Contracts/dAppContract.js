@@ -1,88 +1,7 @@
 export const DAPPSTORE_CONTRACT_ADDRESS =
-  "0xAE50ff3a453386b988daBaDe19997F2C013f0459";
+  "0xa1879B8f434c0BE3ABb662A269F72496C7047d9E";
 
 export const DAPPSTORE_ABI = [
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "id",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "description",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "fileSha256",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "imgUrl",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "magnetLink",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "price",
-        type: "uint256",
-      },
-    ],
-    name: "update",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_name",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_description",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_fileSha256",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_imgUrl",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_magnetLink",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_company",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-    ],
-    name: "upload",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
   {
     inputs: [
       {
@@ -211,12 +130,12 @@ export const DAPPSTORE_ABI = [
           },
         ],
         internalType: "struct dAppStore.App[]",
-        name: "",
+        name: "result",
         type: "tuple[]",
       },
       {
         internalType: "uint256",
-        name: "",
+        name: "totalNumOfApps",
         type: "uint256",
       },
     ],
@@ -312,6 +231,87 @@ export const DAPPSTORE_ABI = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "description",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "fileSha256",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "imgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "magnetLink",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+    ],
+    name: "update",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_description",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_fileSha256",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_imgUrl",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_magnetLink",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_company",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
+      },
+    ],
+    name: "upload",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];

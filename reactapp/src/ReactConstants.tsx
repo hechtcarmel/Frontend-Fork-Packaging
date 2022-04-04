@@ -2,12 +2,12 @@ import dummy_car from "./Misc/product_img/Audi_R8_2017_189_19_610_52_10_76_48_17
 import AppData from "./Pages/AppsPage/AppData";
 
 export const PagePaths = {
-  AppsPagePath: "/browse",
+  AppsPagePath: "/",
   PurchasesPagePath: "/purchases",
   UploadPagePath: "/upload",
   NotFoundPagePath: "*",
   MyPublishedPagePath: "/published",
-  LoginPagePath: "/",
+  LoginPagePath: "/login",
 };
 
 export const APPS_PER_PAGE: number = 16;
