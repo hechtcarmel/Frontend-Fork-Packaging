@@ -15,7 +15,7 @@ export const MAX_DESCRIPTION_LENGTH: number = 300;
 
 export const DEFAULT_EMPTY_APP: AppData = {
   id: 0,
-  creator: `Cool Dev`,
+  company: `Cool Dev`,
   description: `Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App. Cool Dummy App.  `,
   img_url: "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
   price: 10,
@@ -26,4 +26,5 @@ export const DEFAULT_EMPTY_APP: AppData = {
   version: 1.0,
   owned: true,
   myRating: 4,
+  published: true,
 };

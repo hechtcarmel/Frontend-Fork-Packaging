@@ -98,7 +98,7 @@ const uploadApp = async (app: AppData) => {
       app.SHA,
       app.img_url,
       app.magnetLink,
-      app.creator,
+      app.company,
       app.price
     )
     .send({ from: await getCurrAccount() })
@@ -141,13 +141,14 @@ const fetchDisplayedApps = async (
           name: solidityStruct.name,
           description: solidityStruct.description,
           price: solidityStruct.price,
-          creator: solidityStruct.company,
-          img_url: solidityStruct.ImgUrl,
-          owned: false,
+          company: solidityStruct.company,
+          img_url: solidityStruct.imgUrl,
+          owned: solidityStruct.owned,
           rating: solidityStruct.rating,
           SHA: solidityStruct.fileSha256,
           version: 1,
           publication_date: "1.1.1",
+          published: solidityStruct.creator === getCurrAccount(),
         };
         appsToDisplay.push(app);
       });

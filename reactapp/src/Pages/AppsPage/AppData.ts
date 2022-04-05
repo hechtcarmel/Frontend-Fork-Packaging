@@ -8,8 +8,9 @@ interface AppData {
   SHA: string;
   version: number;
   publication_date: string;
-  creator: string;
+  company: string;
   owned: boolean;
+  published: boolean;
   myRating?: number;
   magnetLink?: string;
 }

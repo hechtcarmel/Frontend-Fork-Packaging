@@ -133,7 +133,7 @@ export default function AppDetailsModal({
 
             <MDBModalFooter>
               <div id="developer-text">
-                <span className="span_underline">Developer</span> :{app.creator}
+                <span className="span_underline">Developer</span> :{app.company}
               </div>
               <div id="rating-text">
                 <span className="span_underline">Rating</span> : {app.rating}

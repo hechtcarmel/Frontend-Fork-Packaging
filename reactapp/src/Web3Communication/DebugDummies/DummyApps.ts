@@ -5,7 +5,7 @@ const DUMMY_APPS: AppData[] = [];
 for (let i = 0; i < 50; i++) {
   DUMMY_APPS.push({
     id: i,
-    creator: `John Smith #${i}`,
+    company: `John Smith #${i}`,
     description: `Cool Description #${i} Cool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool Description3`,
     img_url:
       i % 3 === 0
@@ -20,6 +20,7 @@ for (let i = 0; i < 50; i++) {
     SHA: "256da46546fd",
     version: 1.0,
     owned: i % 2 === 0 ? true : false,
+    published: i % 2 === 0 ? true : false,
     myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
     magnetLink: "cool magnet",
   });
@@ -30,7 +31,7 @@ export const DUMMY_PUBLISHED: AppData[] = [];
 for (let i = 0; i < 20; i++) {
   DUMMY_PUBLISHED.push({
     id: i,
-    creator: `Carmel Hecht`,
+    company: `Carmel Hecht`,
     description: `Cool Description #${i} Cool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool Description3`,
     img_url:
       i % 3 === 0
@@ -46,6 +47,7 @@ for (let i = 0; i < 20; i++) {
     SHA: "256da46546fd",
     version: i % 6,
     owned: i % 2 === 0 ? true : false,
+    published: true,
     myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
   });
 }
@@ -55,7 +57,7 @@ export const DUMMY_OWNED: AppData[] = [];
 for (let i = 0; i < 20; i++) {
   DUMMY_OWNED.push({
     id: i,
-    creator: `Carmel Hecht`,
+    company: `Carmel Hecht`,
     description: `Cool Description #${i} Cool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool DescriptionCool Description3`,
     img_url:
       i % 3 === 0
@@ -70,7 +72,8 @@ for (let i = 0; i < 20; i++) {
     rating: i % 6,
     SHA: "256da46546fd",
     version: i % 6,
-    owned: i % 2 === 0 ? true : false,
+    owned: true,
+    published: i % 2 === 0 ? true : false,
     myRating: i % 5 === 0 ? undefined : (i % 5) * 20,
   });
 }
