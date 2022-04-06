@@ -56,7 +56,7 @@ function App() {
   const [ownedApps, setOwnedApps] = useState<AppData[]>([]);
   const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
-
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [currAccount, setCurrAccount] = useState<string>("");
 
   return (
@@ -112,7 +112,16 @@ function App() {
           />
           <Route
             path={PagePaths.UploadPagePath}
-            element={isWalletConnected ? <UploadPage /> : <LoginPage />}
+            element={
+              isWalletConnected ? (
+                <UploadPage
+                  isUploading={isUploading}
+                  setIsUploading={setIsUploading}
+                />
+              ) : (
+                <LoginPage />
+              )
+            }
           />
           <Route path={PagePaths.NotFoundPagePath} element={<ErrorPage />} />
           <Route path={"/web3test"} element={<Web3TestPage />} />
@@ -126,6 +135,8 @@ function App() {
                 userId={userId}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                isUploading={isUploading}
+                setIsUploading={setIsUploading}
               />
             }
           />

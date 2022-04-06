@@ -12,6 +12,8 @@ interface PublishedProps {
   userId: string;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  isUploading: boolean;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
 }
 
 function PublishedPage({
@@ -20,6 +22,8 @@ function PublishedPage({
   userId,
   isLoading,
   setIsLoading,
+  isUploading,
+  setIsUploading,
 }: PublishedProps) {
   useEffect(() => {
     setPublishedApps(getPublishedApps(userId));

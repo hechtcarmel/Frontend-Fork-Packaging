@@ -1,10 +1,19 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import "../../CSS/UploadPage.css";
 import { IS_ON_ELECTRON } from "../../ElectronCommunication/SharedElectronConstants";
 import UploadForm from "./Components/UploadForm";
 
-function UploadPage() {
-  return <UploadForm />;
+interface UploadPageProps {
+  isUploading: boolean;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
+}
+function UploadPage(props: UploadPageProps) {
+  return (
+    <UploadForm
+      isUploading={props.isUploading}
+      setIsUploading={props.setIsUploading}
+    />
+  );
 }
 /*
   if (!IS_ON_ELECTRON) {

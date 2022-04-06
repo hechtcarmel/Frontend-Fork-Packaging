@@ -78,12 +78,12 @@ const fetchDummyDisplayedApps = async (
 export const uploadDummyApps = async (num: number) => {
   //console.log("Dummyapps before upload: ", DUMMY_APPS);
   for (let i = 0; i < Math.max(num, DUMMY_APPS.length); i++) {
-    await uploadApp(DUMMY_APPS[i]);
+    await uploadDummyApp(DUMMY_APPS[i]);
   }
   console.log("Uploaded All Dummy Apps");
 };
 
-const uploadApp = async (app: AppData) => {
+const uploadDummyApp = async (app: AppData) => {
   console.log("Uploading App: ", app);
 
   let contract = await createContract(
@@ -107,6 +107,36 @@ const uploadApp = async (app: AppData) => {
     })
     .catch((err: any) => {
       console.log("Error uploading contract: ", err);
+    });
+};
+
+export const uploadApp = async (
+  name: string,
+  magnetLink: string,
+  description: string,
+  company: string,
+  img_url: string,
+  price: number,
+  sha: string
+) => {
+  console.log("Uploading App: ", name);
+
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+
+  await contract.methods
+    .upload(name, description, sha, img_url, magnetLink, company, price)
+    .send({ from: await getCurrAccount() })
+    .then(() => {
+      console.log("Finished Uploading");
+    })
+    .catch((err: any) => {
+      console.log("Error uploading contract: ", err);
+    })
+    .catch((error: any) => {
+      console.log(error);
     });
 };
 

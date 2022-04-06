@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import {
   MDBInput,
   MDBBtn,
@@ -14,8 +14,17 @@ import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../../CSS/appImage.css";
-
-export default function UploadForm() {
+import AppData from "../../AppsPage/AppData";
+import { uploadApp } from "../../../Web3Communication/Web3ReactApi";
+import { toast } from "react-toastify";
+interface UploadFormProps {
+  isUploading: boolean;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
+}
+export default function UploadForm({
+  isUploading,
+  setIsUploading,
+}: UploadFormProps) {
   const [uploadedImgUrl, setUploadedImgUrl] = useState<string>("");
 
   const onImgUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,9 +73,47 @@ export default function UploadForm() {
         )
         .url("Must be a url!"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      if (isUploading) {
+        toast.error("Wait for upload to finish before starting another!");
+        return;
+      }
+      setIsUploading(true);
       console.log("Upload form submitted with values: ", values);
+      let publishingToastId = toast.loading(`Publishing ${values.name}...`, {
+        autoClose: false,
+      });
       //createTorrent(values.appFile);
+      //.then ( (results from electron which include magnet link & SHA) => {
+      uploadApp(
+        values.name,
+        "Placeholder magnet",
+        values.description,
+        values.company,
+        values.img_url,
+        values.price,
+        "Placeholder SHA"
+      )
+        .then(() => {
+          toast.update(publishingToastId, {
+            render: `Published! ${values.name}!`,
+            type: "success",
+            isLoading: false,
+            autoClose: 5000,
+          });
+        })
+        .catch((error: any) => {
+          toast.update(publishingToastId, {
+            render: `Failed to publish ${values.name}!`,
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+          });
+          console.log(error);
+        })
+        .finally(() => {
+          setIsUploading(false);
+        });
     },
   });
 
