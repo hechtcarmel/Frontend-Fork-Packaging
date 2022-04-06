@@ -11,11 +11,47 @@ import {
 } from "./Contracts/dAppContract";
 import { Dispatch, SetStateAction } from "react";
 
-export function getPublishedApps(userId: string) {
+export async function getPublishedApps() {
   if (IS_DEBUG) {
     return DUMMY_PUBLISHED;
   } else {
-    return [];
+    let contract = await createContract(
+      DAPPSTORE_ABI,
+      DAPPSTORE_CONTRACT_ADDRESS
+    );
+    console.log("Fetching owned apps");
+    let res = await contract.methods
+      .getPublishedApps(await getCurrAccount())
+      .call()
+      .then((res: any) => {
+        console.log("getPublishedApps returned = ", res);
+        let publishedApps: Array<AppData> = [];
+        res.forEach((solidityStruct: any) => {
+          let app: AppData = {
+            id: solidityStruct.id,
+            name: solidityStruct.name,
+            description: solidityStruct.description,
+            price: solidityStruct.price,
+            company: solidityStruct.company,
+            img_url: solidityStruct.imgUrl,
+            owned: solidityStruct.owned,
+            rating: solidityStruct.rating,
+            SHA: solidityStruct.fileSha256,
+            version: 1,
+            publication_date: "1.1.1",
+            published: solidityStruct.creator === getCurrAccount(),
+          };
+          publishedApps.push(app);
+        });
+
+        return res;
+      })
+      .catch((error: any) => {
+        console.log("ERROR in getContractValue", error);
+        return [];
+      });
+    console.log("publishedApps= ", res);
+    return res;
   }
 }
 

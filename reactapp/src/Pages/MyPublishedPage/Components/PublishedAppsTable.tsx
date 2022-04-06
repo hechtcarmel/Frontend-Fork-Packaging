@@ -31,8 +31,13 @@ export function PublishedAppsTable({
         accessor: "name",
       },
       {
+        id: "Rating",
         Header: "Rating",
-        accessor: "rating",
+        accessor: (row: AppData) => {
+          return parseInt(String(row["rating"]), 10) === -1
+            ? "NOT RATED"
+            : row["rating"];
+        },
       },
       {
         Header: "Price",

@@ -2,7 +2,10 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IS_ON_ELECTRON } from "../../ElectronCommunication/SharedElectronConstants";
 import { PublishedAppsTable } from "./Components/PublishedAppsTable";
 import AppData from "../AppsPage/AppData";
-import { getPublishedApps } from "../../Web3Communication/Web3ReactApi";
+import {
+  getOwnedApps,
+  getPublishedApps,
+} from "../../Web3Communication/Web3ReactApi";
 import "../../CSS/PublishedPage.css";
 import UpdateAppModal from "./Components/UpdateAppModal";
 import { DEFAULT_EMPTY_APP } from "../../ReactConstants";
@@ -12,8 +15,6 @@ interface PublishedProps {
   userId: string;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
-  isUploading: boolean;
-  setIsUploading: Dispatch<SetStateAction<boolean>>;
 }
 
 function PublishedPage({
@@ -22,11 +23,12 @@ function PublishedPage({
   userId,
   isLoading,
   setIsLoading,
-  isUploading,
-  setIsUploading,
 }: PublishedProps) {
   useEffect(() => {
-    setPublishedApps(getPublishedApps(userId));
+    let foo = async () => {
+      setPublishedApps(await getPublishedApps());
+    };
+    foo();
   }, [userId]);
 
   const [showModal, setShowModal] = useState<boolean>(false);
