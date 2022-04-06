@@ -30,6 +30,7 @@ export function PurchasedAppsTable({
         Header: "",
         accessor: "img_url",
         Cell: (value: any) => {
+          console.log("img cell value: ", value.value);
           return (
             <div>
               <img

@@ -31,7 +31,10 @@ function PurchasesPage({
   const toggleShowModal = () => setShowModal(!showModal);
 
   useEffect(() => {
-    setOwnedApps(getOwnedApps(userId));
+    let foo = async () => {
+      setOwnedApps(await getOwnedApps());
+    };
+    foo();
   }, [userId]);
 
   return (

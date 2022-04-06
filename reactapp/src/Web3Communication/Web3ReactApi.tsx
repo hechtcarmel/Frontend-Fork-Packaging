@@ -19,11 +19,47 @@ export function getPublishedApps(userId: string) {
   }
 }
 
-export function getOwnedApps(userId: string) {
+export async function getOwnedApps() {
   if (IS_DEBUG) {
     return DUMMY_OWNED;
   } else {
-    return [];
+    let contract = await createContract(
+      DAPPSTORE_ABI,
+      DAPPSTORE_CONTRACT_ADDRESS
+    );
+    console.log("Fetching owned apps");
+    let ownedApps = await contract.methods
+      .getPurchasedApps(await getCurrAccount())
+      .call()
+      .then((res: any) => {
+        console.log("getOwnedApps returned = ", res);
+        let ownedApps: Array<AppData> = [];
+        res.forEach((solidityStruct: any) => {
+          let app: AppData = {
+            id: solidityStruct.id,
+            name: solidityStruct.name,
+            description: solidityStruct.description,
+            price: solidityStruct.price,
+            company: solidityStruct.company,
+            img_url: solidityStruct.imgUrl,
+            owned: solidityStruct.owned,
+            rating: solidityStruct.rating,
+            SHA: solidityStruct.fileSha256,
+            version: 1,
+            publication_date: "1.1.1",
+            published: solidityStruct.creator === getCurrAccount(),
+          };
+          ownedApps.push(app);
+        });
+
+        return ownedApps;
+      })
+      .catch((error: any) => {
+        console.log("ERROR in getContractValue", error);
+        return [];
+      });
+    console.log("ownedApps= ", ownedApps);
+    return ownedApps;
   }
 }
 
@@ -78,7 +114,7 @@ const fetchDummyDisplayedApps = async (
 export const uploadDummyApps = async (num: number) => {
   //console.log("Dummyapps before upload: ", DUMMY_APPS);
   for (let i = 0; i < Math.max(num, DUMMY_APPS.length); i++) {
-    await uploadDummyApp(DUMMY_APPS[i]);
+    uploadDummyApp(DUMMY_APPS[i]);
   }
   console.log("Uploaded All Dummy Apps");
 };
