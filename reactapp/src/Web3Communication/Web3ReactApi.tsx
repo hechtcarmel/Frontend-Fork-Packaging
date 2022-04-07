@@ -210,6 +210,25 @@ export const uploadApp = async (
     });
 };
 
+export const purchase = async (id: number, price: number) => {
+  console.log("Purchasing App with id: ", id);
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+
+  await contract.methods
+    .purchase(id)
+    .send({ from: await getCurrAccount(), value: price })
+    .then(() => {
+      console.log("Finished Purchasing");
+    })
+    .catch((err: any) => {
+      console.log("Error purchasing app: ", err);
+      throw err;
+    });
+};
+
 export const updateApp = async (
   id: number,
   magnetLink: string,
@@ -253,10 +272,10 @@ const fetchDisplayedApps = async (
       currPageNum * itemsPerPage + itemsPerPage
     }`
   );
-  let from: number = currPageNum * itemsPerPage + 1;
-  let to: number = from + itemsPerPage;
+  let from_index: number = currPageNum * itemsPerPage + 1;
+  let to_index: number = from_index + itemsPerPage;
   let res = await contract.methods
-    .getApps(from, to)
+    .getApps(from_index, to_index, await getCurrAccount())
     .call()
     .then((res: any) => {
       console.log("fetchDisplayedApps returned = ", res);

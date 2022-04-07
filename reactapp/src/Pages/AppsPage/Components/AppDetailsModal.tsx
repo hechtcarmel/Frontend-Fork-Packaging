@@ -18,6 +18,7 @@ import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import isElectron from "is-electron";
 import "../../../CSS/appImage.css";
 import { toast } from "react-toastify";
+import { purchase } from "../../../Web3Communication/Web3ReactApi";
 
 interface AppDetailsModalProps {
   app: appData;
@@ -77,7 +78,33 @@ export default function AppDetailsModal({
       }
     } else {
       setIsLoading(true);
-      toast("Purchasing...", { autoClose: false });
+      let purchasingToastId = toast(`Purchasing ${app.name}...`, {
+        autoClose: false,
+      });
+
+      purchase(app.id, app.price)
+        .then(() => {
+          toast.update(purchasingToastId, {
+            render: `Purchsed ${app.name}! :)`,
+            type: "success",
+            isLoading: false,
+            autoClose: 5000,
+          });
+        })
+        .catch((error: any) => {
+          toast.update(purchasingToastId, {
+            render: `Failed to purchase ${app.name}... :(`,
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+          });
+          console.log(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+
+      /*
       return fetch("https://reqres.in/api/users/1")
         .then((response) => response.json())
         .then((data) => console.log(data))
@@ -89,11 +116,12 @@ export default function AppDetailsModal({
         })
 
         .catch((err) => {
-          /*TODO*/
+
           toast.dismiss();
           toast("Error...");
         })
         .finally(() => setIsLoading(false));
+      */
     }
   };
 
