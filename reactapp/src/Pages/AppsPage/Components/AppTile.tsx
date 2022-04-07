@@ -5,6 +5,7 @@ import {
   MDBCardText,
   MDBCardImage,
   MDBBtn,
+  MDBRipple,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import no_image_alt from "../../../Misc/app_no_image_alt.jpg";
@@ -31,22 +32,39 @@ function AppTile({
   };
   return (
     <MDBCard
+      shadow="3"
+      border="dark"
+      background="white"
       style={{
         maxWidth: "22rem",
-        padding: "10px",
+        padding: "3px",
         margin: "10px",
         marginTop: "20px",
       }}
     >
-      <div className={"card_image_div"}>
-        <MDBCardImage
-          src={appData.img_url ? appData.img_url : no_image_alt}
-          position="top"
-          alt="..."
-          className={"app-image"}
-        />
-      </div>
+      <MDBRipple
+        rippleColor="light"
+        rippleTag="div"
+        className="bg-image hover-overlay"
+      >
+        <div className={"card_image_div"}>
+          <MDBCardImage
+            src={appData.img_url ? appData.img_url : no_image_alt}
+            position="top"
+            alt="..."
+            fluid
+            className={"app-image"}
+          />
+        </div>
+        <a>
+          <div
+            className="mask"
+            style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
+          ></div>
+        </a>
+      </MDBRipple>
       <MDBCardBody
+        className="text-dark"
         style={{
           height: "140px",
           overflowY: "hidden",
