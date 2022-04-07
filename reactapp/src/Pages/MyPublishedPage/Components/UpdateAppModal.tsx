@@ -16,6 +16,7 @@ import "../../../CSS/AppDetailsModal.css";
 import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
 import UpdateAppForm from "./UpdateAppForm";
+import { toast } from "react-toastify";
 
 interface UpdateAppModalProps {
   appToUpdate: AppData;
@@ -24,6 +25,8 @@ interface UpdateAppModalProps {
   toggleShowModal: any;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
+  isUploading: boolean;
 }
 
 export default function UpdateAppModal({
@@ -33,6 +36,8 @@ export default function UpdateAppModal({
   toggleShowModal,
   isLoading,
   setIsLoading,
+  setIsUploading,
+  isUploading,
 }: UpdateAppModalProps) {
   const [imgUrl, setImgUrl] = useState<string>();
 
@@ -44,19 +49,6 @@ export default function UpdateAppModal({
   function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-
-  const handleUpdateBtn = async () => {
-    //TODO: Add error handling.
-    setIsLoading(true);
-    return fetch("https://reqres.in/api/users/1")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
-      .catch((err) => {
-        /*TODO*/
-      })
-      .finally(() => setIsLoading(false));
-  };
 
   return (
     <>
@@ -76,6 +68,9 @@ export default function UpdateAppModal({
                 setIsLoading={setIsLoading}
                 currAppData={appToUpdate}
                 isLoading={isLoading}
+                isUploading={isUploading}
+                setIsUploading={setIsUploading}
+                setShowModal={setShowModal}
               ></UpdateAppForm>
             </MDBModalBody>
           </MDBModalContent>

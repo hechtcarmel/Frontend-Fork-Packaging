@@ -15,6 +15,8 @@ interface PublishedProps {
   userId: string;
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
+  isUploading: boolean;
 }
 
 function PublishedPage({
@@ -23,6 +25,8 @@ function PublishedPage({
   userId,
   isLoading,
   setIsLoading,
+  setIsUploading,
+  isUploading,
 }: PublishedProps) {
   useEffect(() => {
     let foo = async () => {
@@ -45,6 +49,8 @@ function PublishedPage({
         toggleShowModal={toggleShowModal}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
+        setIsUploading={setIsUploading}
+        isUploading={isUploading}
       />
       <h1 id="published-apps-title"> My Published Apps</h1>
       <PublishedAppsTable

@@ -136,6 +136,8 @@ function App() {
                 userId={userId}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                setIsUploading={setIsUploading}
+                isUploading={isUploading}
               />
             }
           />

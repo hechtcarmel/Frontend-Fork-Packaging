@@ -206,9 +206,36 @@ export const uploadApp = async (
     })
     .catch((err: any) => {
       console.log("Error uploading contract: ", err);
+      throw err;
+    });
+};
+
+export const updateApp = async (
+  id: number,
+  magnetLink: string,
+  description: string,
+  img_url: string,
+  price: number,
+  sha: string
+) => {
+  console.log("Uploading App: ");
+  console.log(
+    `id: ${id}, magnetLink: ${magnetLink}, description: ${description}, img_url: ${img_url}, price: ${price}, sha: ${sha}`
+  );
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+
+  await contract.methods
+    .update(id, description, sha, img_url, magnetLink, price)
+    .send({ from: await getCurrAccount() })
+    .then(() => {
+      console.log("Finished Updating");
     })
-    .catch((error: any) => {
-      console.log(error);
+    .catch((err: any) => {
+      console.log("Error updating contract: ", err);
+      throw err;
     });
 };
 

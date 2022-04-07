@@ -96,7 +96,7 @@ export default function UploadForm({
       )
         .then(() => {
           toast.update(publishingToastId, {
-            render: `Published! ${values.name}!`,
+            render: `Published ${values.name} :)`,
             type: "success",
             isLoading: false,
             autoClose: 5000,

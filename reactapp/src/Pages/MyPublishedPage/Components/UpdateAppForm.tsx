@@ -15,16 +15,24 @@ import AppData from "../../AppsPage/AppData";
 import SpinnerButton from "@vlsergey/react-bootstrap-button-with-spinner";
 import "../../../CSS/UpdateAppForm.css";
 import FallbackImg from "../../../Misc/fix-invalid-image-error.png";
+import { toast } from "react-toastify";
+import { updateApp } from "../../../Web3Communication/Web3ReactApi";
+
 interface UpdateFormProps {
   currAppData: AppData;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
+  isUploading: boolean;
+  setIsUploading: Dispatch<SetStateAction<boolean>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
-
 export default function UpdateForm({
   currAppData,
   setIsLoading,
   isLoading,
+  isUploading,
+  setIsUploading,
+  setShowModal,
 }: UpdateFormProps) {
   const [updatedImgUrl, setUpdatedImgUrl] = useState<string>("");
 
@@ -50,6 +58,8 @@ export default function UpdateForm({
       price: currAppData.price.toString(),
       description: currAppData.description,
       img_url: currAppData.img_url,
+      id: currAppData.id,
+      name: currAppData.name,
     },
     validationSchema: Yup.object({
       appFile: Yup.mixed().required("File is required"),
@@ -71,17 +81,57 @@ export default function UpdateForm({
     }),
     onSubmit: (values) => {
       console.log("Update form submitted with values: ", values);
-      setIsLoading(true);
+      if (isUploading) {
+        toast.error("Wait for upload to finish before starting another!");
+        return;
+      }
+      setIsUploading(true);
+      let updateToastId = toast.loading(`Updating ${values.name}...`, {
+        autoClose: false,
+      });
+      //createTorrent(values.appFile);
+      //.then ( (results from electron which include magnet link & SHA) => {
 
+      updateApp(
+        values.id,
+        "PLACEHOLDER UPDATED MAGNET",
+        values.description,
+        values.img_url,
+        values.price,
+        "PLACEHOLDER UPDATED SHA"
+      )
+        .then(() => {
+          toast.update(updateToastId, {
+            render: `Updated ${values.name}!`,
+            type: "success",
+            isLoading: false,
+            autoClose: 5000,
+          });
+        })
+        .catch((error: any) => {
+          toast.update(updateToastId, {
+            render: `Failed to update :(`,
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+          });
+          console.log(error);
+        })
+        .finally(() => {
+          setIsUploading(false);
+        });
+
+      /*
+      setIsLoading(true);
       //fetch the data
       return fetch("https://reqres.in/api/users/1")
         .then((response) => response.json())
         .then((data) => console.log(data))
         .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
         .catch((err) => {
-          /*TODO*/
+
         })
-        .finally(() => setIsLoading(false));
+        .finally(() => setIsLoading(false));*/
     },
   });
 
