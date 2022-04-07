@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, session } = require("electron");
+
 require("@electron/remote/main").initialize();
 const {
   REACT_ADDRESS,
@@ -15,6 +16,7 @@ const url = require("url");
 function createWindow() {
   // Create the browser window.
   console.log("Creating Electron Window");
+  //clearAllUserData();
 
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -32,6 +34,7 @@ function createWindow() {
   mainWindow.show();
   // and load the index.html of the app.
   console.log(`React Address: ${REACT_ADDRESS}`);
+
   mainWindow.loadURL(REACT_ADDRESS);
 
   // Open the DevTools.

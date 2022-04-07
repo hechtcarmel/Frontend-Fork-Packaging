@@ -1,12 +1,16 @@
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import isElectron from "is-electron";
 const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
       infuraId: "7ac5f849f3984d56a7bea36e745ce0a4",
     },
+  },
+  binancechainwallet: {
+    package: true,
   },
 };
 
@@ -24,7 +28,6 @@ export async function connectWalletWithModal(net = "rinkeby") {
     console.log("Changing provider from ", web3.currentProvider);
 
     const provider = await web3Modal.connect();
-
     web3.setProvider(provider);
 
     console.log("To new Provider:", web3.currentProvider);

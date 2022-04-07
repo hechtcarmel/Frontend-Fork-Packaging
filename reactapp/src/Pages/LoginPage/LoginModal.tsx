@@ -41,11 +41,14 @@ export function LoginModal({
               {" "}
               <button
                 onClick={() => {
+                  console.log("check 3");
+
                   setShowModal(false);
                   connectWalletWithModal()
                     .then(() => {
                       setIsWalletConnected(true);
                       web3.eth.getAccounts().then((accounts) => {
+                        console.log("Accounts: ", accounts);
                         setCurrAccount(accounts[0]);
                       });
                     })
@@ -61,6 +64,7 @@ export function LoginModal({
                 onClick={() => {
                   setShowModal(false);
                   if (!isElectron()) {
+                    console.log("check 1");
                     connectWalletWithModal("HTTP://127.0.0.1:7545")
                       .then(() => {
                         setIsWalletConnected(true);
@@ -73,6 +77,9 @@ export function LoginModal({
                         console.log(error);
                       });
                   } else {
+                    console.log("check 2");
+
+                    /*
                     connectWalletToGanacheNoModal()
                       .then(() => {
                         setIsWalletConnected(true);
@@ -83,7 +90,7 @@ export function LoginModal({
                       .catch((error) => {
                         setShowModal(true);
                         console.log(error);
-                      });
+                      });*/
                   }
                 }}
               >

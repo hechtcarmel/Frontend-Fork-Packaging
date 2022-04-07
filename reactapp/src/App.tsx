@@ -49,6 +49,7 @@ const handleDemoClickAsync = () => {
 };
 
 function App() {
+  localStorage.clear(); //Keeps WalletConnect from caching the data. More granularity may be required.
   const [displayedApps, setDisplayedApps] = useState<Array<AppData>>([]);
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -178,20 +179,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<header className="App-header">
-  <img src={logo} className="App-logo" alt="logo" />
-  <p>
-    Edit <code>src/App.js</code> and save to reload.
-  </p>
-  <a
-      className="App-link"
-      href="https://reactjs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-  >
-    Learn React
-  </a>
-</header>
-*/
