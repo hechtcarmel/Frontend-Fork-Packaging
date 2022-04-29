@@ -11,7 +11,7 @@ import Footer from "./Pages/Shared/Footer";
 import SideNav from "./Pages/Shared/SideNav";
 import { IS_ON_ELECTRON } from "./ElectronCommunication/SharedElectronConstants";
 import UploadPage from "./Pages/UploadPage/UploadPage";
-import { PagePaths } from "./ReactConstants";
+import {AppCategories, PagePaths} from "./ReactConstants";
 import AppData from "./Pages/AppsPage/AppData";
 import PublishedPage from "./Pages/MyPublishedPage/PublishedPage";
 import { toast } from "react-toastify";

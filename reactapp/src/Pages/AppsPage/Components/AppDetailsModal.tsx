@@ -136,35 +136,46 @@ export default function AppDetailsModal({
         setShow={setShowModal}
         tabIndex={-1}
         staticBackdrop={isLoading}
+
       >
         <MDBModalDialog centered>
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>{app.name}</MDBModalTitle>
+              <div>
+                <MDBModalTitle>{app.name} </MDBModalTitle>
+
+
+              </div>
               {ownedState ? (
                 <Rating onClick={handleRatingChanged} ratingValue={rating} />
               ) : (
                 <></>
               )}
+
             </MDBModalHeader>
             <MDBModalBody>
+
               <MDBCardImage
                 src={app.img_url ? app.img_url : no_image_alt}
                 alt="..."
                 className="app-image"
               />
               <h4 id="description-paragraph-title">Description:</h4>
+              <h6 id="category-paragraph-title">{`Category: ${app.category}`}</h6>
+
               <p id="description-paragraph" className="card-text">
                 {app.description}
               </p>
+
             </MDBModalBody>
 
             <MDBModalFooter>
+
               <div id="developer-text">
                 <span className="span_underline">Developer</span> :{app.company}
               </div>
               <div id="rating-text">
-                <span className="span_underline">Rating</span> : {app.rating}
+                <span className="span_underline">Rating</span> : {app.rating === -1? "Not Rated" : app.rating}
               </div>
 
               <SpinnerButton onClick={handlePurchaseBtn}>
