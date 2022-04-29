@@ -10,12 +10,12 @@ import {
   MDBFile,
 } from "mdb-react-ui-kit";
 import "../../../CSS/UploadForm.css";
-import { MAX_DESCRIPTION_LENGTH } from "../../../ReactConstants";
+import {AppCategories, APPS_PER_PAGE, MAX_DESCRIPTION_LENGTH} from "../../../ReactConstants";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
-import { uploadApp } from "../../../Web3Communication/Web3ReactApi";
+import {getDisplayedApps, uploadApp} from "../../../Web3Communication/Web3ReactApi";
 import { toast } from "react-toastify";
 interface UploadFormProps {
   isUploading: boolean;
@@ -46,6 +46,7 @@ export default function UploadForm({
       description: "",
       img_url: "",
       company: "",
+      category:AppCategories.Games
     },
     validationSchema: Yup.object({
       appFile: Yup.mixed().required("File is required"),
@@ -72,6 +73,9 @@ export default function UploadForm({
           "Must be a url of a png/jpg file!"
         )
         .url("Must be a url!"),
+      // category: Yup.string()
+      //     .trim()
+      //     .required("Must select a category!")
     }),
     onSubmit: async (values) => {
       if (isUploading) {
@@ -92,7 +96,8 @@ export default function UploadForm({
         values.company,
         values.img_url,
         values.price,
-        "Placeholder SHA"
+        "Placeholder SHA",
+          values.category,
       )
         .then(() => {
           toast.update(publishingToastId, {
@@ -162,6 +167,17 @@ export default function UploadForm({
             />
             {formik.errors.company ? (
               <p className={"invalid-field-text"}>{formik.errors.company}</p>
+            ) : null}{" "}
+          </div>
+          <div className="col-md-4">
+
+            <select id={"category-input"} name={"category"} className="mdb-select md-form" onChange={(e) => formik.setFieldValue("category", e.target.value)} defaultValue={AppCategories.Games}>
+              {Object.values(AppCategories).filter(category => category !== AppCategories.All).map( (category) => (
+                  <option key={category} value={category}>{category}</option>
+              ) )}
+            </select>
+            {formik.errors.category ? (
+                <p className={"invalid-field-text"}>{formik.errors.category}</p>
             ) : null}{" "}
           </div>
           <div className="row g-2">

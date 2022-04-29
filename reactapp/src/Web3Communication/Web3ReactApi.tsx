@@ -193,7 +193,8 @@ export const uploadApp = async (
   company: string,
   img_url: string,
   price: number,
-  sha: string
+  sha: string,
+  category: string
 ) => {
   console.log("Uploading App: ", name);
 
