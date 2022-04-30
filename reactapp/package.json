@@ -24,6 +24,7 @@
     "formik": "^2.2.9",
     "fs": "^0.0.1-security",
     "ganache": "^7.0.3",
+    "get-eth-price": "^1.0.0",
     "is-electron": "^2.2.1",
     "mdb-react-ui-kit": "^3.0.0",
     "mdb-ui-kit": "^3.11.0",

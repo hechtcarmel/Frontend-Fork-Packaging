@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, {ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from "react";
 import {
   MDBInput,
   MDBBtn,
@@ -28,6 +28,7 @@ export default function UploadForm({
   setIsUploading,
 }: UploadFormProps) {
   const [uploadedImgUrl, setUploadedImgUrl] = useState<string>("");
+  const [weiToDollars, setWeiToDollars] = useState<number>(0)
 
   const onImgUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUploadedImgUrl(e.target.value);
@@ -37,6 +38,20 @@ export default function UploadForm({
     }
     formik.handleChange(e);
   };
+
+  useEffect(() => {
+    fetch('https://api.coinbase.com/v2/exchange-rates?currency=ETH')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.data.rates.BUSD)
+          const etherToUSD: number = data.data.rates.BUSD
+          console.log("etherToUSD: ", etherToUSD)
+          console.log("weiToUSD :" ,  etherToUSD / (1_000_000_000_000_000_000))
+          setWeiToDollars(etherToUSD / (1_000_000_000_000_000_000))
+
+
+        });
+  }, [])
 
   const formik = useFormik<any>({
     validateOnChange: false,
@@ -80,6 +95,7 @@ export default function UploadForm({
            .required("Must select a category!")
     }),
     onSubmit: async (values) => {
+
       if (isUploading) {
         toast.error("Wait for upload to finish before starting another!");
         return;
@@ -184,7 +200,8 @@ export default function UploadForm({
             ) : null}{" "}
           </div>
           <div className="row g-2">
-            <div className="col-md-2">
+            <div className="col-md-9" style={{display:"flex", alignItems: "center",
+              justifyContent: "left", gap: "1em"}}>
               <MDBInput
                 value={formik.values.price}
                 name="price"
@@ -195,6 +212,10 @@ export default function UploadForm({
               {formik.errors.price ? (
                 <p className={"invalid-field-text"}>{formik.errors.price}</p>
               ) : null}
+              {
+                (isNaN(formik.values.price)) ? <h6> </h6> :  <h6 >{`Approximately ${(formik.values.price * weiToDollars).toFixed(20)} $`}</h6>
+              }
+
             </div>
             <div className="col-md-6">
               <MDBInput
