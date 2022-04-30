@@ -18,6 +18,7 @@ import AppData from "../../AppsPage/AppData";
 import {getDisplayedApps, uploadApp} from "../../../Web3Communication/Web3ReactApi";
 import { toast } from "react-toastify";
 import {MdNewLabel} from "react-icons/all";
+
 interface UploadFormProps {
   isUploading: boolean;
   setIsUploading: Dispatch<SetStateAction<boolean>>;
