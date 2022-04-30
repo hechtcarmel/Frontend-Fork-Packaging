@@ -52,7 +52,7 @@ function AppTile({
             src={appData.img_url ? appData.img_url : no_image_alt}
             position="top"
             alt="..."
-            fluid
+            
             className={"app-image"}
           />
         </div>
