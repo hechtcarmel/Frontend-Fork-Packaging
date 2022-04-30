@@ -17,6 +17,7 @@ import "../../../CSS/appImage.css";
 import AppData from "../../AppsPage/AppData";
 import {getDisplayedApps, uploadApp} from "../../../Web3Communication/Web3ReactApi";
 import { toast } from "react-toastify";
+import {MdNewLabel} from "react-icons/all";
 interface UploadFormProps {
   isUploading: boolean;
   setIsUploading: Dispatch<SetStateAction<boolean>>;
@@ -46,7 +47,7 @@ export default function UploadForm({
       description: "",
       img_url: "",
       company: "",
-      category:AppCategories.Games
+      category:""
     },
     validationSchema: Yup.object({
       appFile: Yup.mixed().required("File is required"),
@@ -73,9 +74,9 @@ export default function UploadForm({
           "Must be a url of a png/jpg file!"
         )
         .url("Must be a url!"),
-      // category: Yup.string()
-      //     .trim()
-      //     .required("Must select a category!")
+       category: Yup.string()
+           .trim()
+           .required("Must select a category!")
     }),
     onSubmit: async (values) => {
       if (isUploading) {
@@ -171,7 +172,8 @@ export default function UploadForm({
           </div>
           <div className="col-md-4">
 
-            <select id={"category-input"} name={"category"} className="mdb-select md-form" onChange={(e) => formik.setFieldValue("category", e.target.value)} defaultValue={AppCategories.Games}>
+            <select id={"category-input"} name={"category"} className="mdb-select md-form" onChange={(e) => formik.setFieldValue("category", e.target.value)} defaultValue={""}>
+              <option value={""} disabled selected >{"Category"}</option>
               {Object.values(AppCategories).filter(category => category !== AppCategories.All).map( (category) => (
                   <option key={category} value={category}>{category}</option>
               ) )}
