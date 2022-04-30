@@ -161,7 +161,8 @@ export default function AppDetailsModal({
                 className="app-image"
               />
               <h4 id="description-paragraph-title">Description:</h4>
-              <h6 id="category-paragraph-title">{`Category: ${app.category}`}</h6>
+
+
 
               <p id="description-paragraph" className="card-text">
                 {app.description}
@@ -169,15 +170,15 @@ export default function AppDetailsModal({
 
             </MDBModalBody>
 
-            <MDBModalFooter>
+            <MDBModalFooter  style={{display: "block"}}>
 
-              <div id="developer-text">
-                <span className="span_underline">Developer</span> :{app.company}
+              <div style={{display: "flex", justifyContent: "space-around", textAlign: "center", margin: "auto"}}>
+                <h6 id="category-paragraph-modal-elem">{`Category`}  <br/> {app.category}</h6>
+                <h6 id="category-paragraph-modal-elem">{`Price`} <br/>{app.price} Wei</h6>
+                <h6 id="category-paragraph-modal-elem">{`Developer`} <br/> {app.company} </h6>
+                <h6 id="category-paragraph-modal-elem">{`Rating`} <br/> {app.rating == -1 ? "Not Rated" : app.rating}</h6>
               </div>
-              <div id="rating-text">
-                <span className="span_underline">Rating</span> : {app.rating === -1? "Not Rated" : app.rating}
-              </div>
-
+              <hr />
               <SpinnerButton onClick={handlePurchaseBtn}>
                 {getBtnText()}
               </SpinnerButton>
