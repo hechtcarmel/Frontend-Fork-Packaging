@@ -1,6 +1,7 @@
 {
   "name": "reactapp",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.8",
@@ -54,7 +55,7 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "electron-react": "concurrently \"SET BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-alone-test": "electron ."
+    "electron-compiled": "electron ."
   },
   "eslintConfig": {
     "extends": [

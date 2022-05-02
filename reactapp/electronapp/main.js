@@ -35,8 +35,10 @@ function createWindow() {
   // and load the index.html of the app.
   console.log(`React Address: ${REACT_ADDRESS}`);
 
-  mainWindow.loadURL(REACT_ADDRESS);
-
+  //mainWindow.loadURL(REACT_ADDRESS);
+  //mainWindow.loadURL('C:\\Users\\hecht\\ConcurrentProgrammingRepo\\Frontend\reactapp\\build\\index.html');
+  //mainWindow.loadFile('C:\\Users\\hecht\\ConcurrentProgrammingRepo\\Frontend\reactapp\\build\\index.html');
+  mainWindow.loadFile('C:\\Users\\hecht\\Desktop\\text.html')
   // Open the DevTools.
 
   mainWindow.webContents.openDevTools({ mode: "detach" });
