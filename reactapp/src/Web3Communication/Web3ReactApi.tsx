@@ -311,3 +311,23 @@ const fetchDisplayedApps = async (
   console.log("res= ", res);
   return res;
 };
+
+
+export const getMagnetLink = async (appId: string) => {
+  console.log("Fetching magnet link of app: ", appId);
+  let contract = await createContract(
+    DAPPSTORE_ABI,
+    DAPPSTORE_CONTRACT_ADDRESS
+  );
+
+  await contract.methods
+    .getMagnetLink(appId)
+    .send({ from: await getCurrAccount()})
+    .then(() => {
+      console.log("Magnet link acquired");
+    })
+    .catch((err: any) => {
+      console.log("Error retrieveing magnet link: ", err);
+      throw err;
+    });
+}
