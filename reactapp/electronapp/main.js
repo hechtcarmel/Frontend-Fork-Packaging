@@ -37,14 +37,7 @@ function createWindow() {
 
 
   console.log(`React Address: ${REACT_ADDRESS}`);
-  /* Development */
-  //mainWindow.loadURL(REACT_ADDRESS);
 
-  /* Compiled React */
-  //mainWindow.loadFile('.\\build\\index.html')
-
-  /* Packaged App */
-  //mainWindow.loadFile('process.resourcesPath'+'\\index.html')
   if(app.isPackaged){
     mainWindow.loadFile(process.resourcesPath+'\\app\\build\\index.html')
   }
